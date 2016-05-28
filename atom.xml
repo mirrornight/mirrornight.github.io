@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-05-28T08:38:48.922Z</updated>
+  <updated>2016-05-28T09:47:28.871Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -16,33 +16,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>markdown语法学习</title>
+    <title>markdown基础语法学习</title>
     <link href="http://mirrornight.github.io/2016/05/28/markdown%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
     <id>http://mirrornight.github.io/2016/05/28/markdown语法学习/</id>
     <published>2016-05-28T08:14:56.000Z</published>
-    <updated>2016-05-28T08:38:48.922Z</updated>
+    <updated>2016-05-28T09:47:28.871Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;标题语法&quot;&gt;&lt;a href=&quot;#标题语法&quot; class=&quot;headerlink&quot; title=&quot;标题语法&quot;&gt;&lt;/a&gt;标题语法&lt;/h2&gt;&lt;p&gt;有两种形式&lt;br&gt;1.Setext形式&lt;br&gt;“=”     (最高阶标题)&lt;br&gt;“-“     (第二阶标题)&lt;br&gt;2.atx形式&lt;br&gt;1~6个”#”，对应标题的1到6阶&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;区块引用&quot;&gt;&lt;a href=&quot;#区块引用&quot; class=&quot;headerlink&quot; title=&quot;区块引用&quot;&gt;&lt;/a&gt;区块引用&lt;/h2&gt;&lt;p&gt;1.”&amp;gt;”+内容&lt;br&gt;2.”&amp;gt;”+”#”+内容&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;强调&quot;&gt;&lt;a href=&quot;#强调&quot; class=&quot;headerlink&quot; title=&quot;强调&quot;&gt;&lt;/a&gt;强调&lt;/h2&gt;&lt;p&gt;1.两个星号之间加入强调内容&lt;em&gt;斜体&lt;/em&gt;（或内容两边各有两个星号&lt;strong&gt;粗体&lt;/strong&gt;）&lt;br&gt;2.两个下滑线之间加入强调内容&lt;em&gt;斜体&lt;/em&gt;（或内容两边各有两个下划线&lt;strong&gt;粗体&lt;/strong&gt;）&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;列表&quot;&gt;&lt;a href=&quot;#列表&quot; class=&quot;headerlink&quot; title=&quot;列表&quot;&gt;&lt;/a&gt;列表&lt;/h2&gt;&lt;p&gt;1.无序列表&lt;br&gt;使用”*”, “+”, “-“&lt;/p&gt;
-&lt;p&gt;2.有序列表&lt;br&gt;使用数字加点&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;链接&quot;&gt;&lt;a href=&quot;#链接&quot; class=&quot;headerlink&quot; title=&quot;链接&quot;&gt;&lt;/a&gt;链接&lt;/h2&gt;&lt;p&gt;1.行内&lt;br&gt;This is an [example link](&lt;a href=&quot;http://example.com/\&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://example.com/\&lt;/a&gt;).&lt;br&gt;This is an [example link](&lt;a href=&quot;http://example.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://example.com/&lt;/a&gt; “With a Title”).&lt;br&gt;2.参考&lt;br&gt;I get 10 times more traffic from [Google][1] than from&lt;br&gt;[Yahoo][2] or [MSN][3].&lt;/p&gt;
-&lt;p&gt;[1]: &lt;a href=&quot;http://google.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://google.com/&lt;/a&gt; “Google”&lt;br&gt;[2]: &lt;a href=&quot;http://search.yahoo.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://search.yahoo.com/&lt;/a&gt; “Yahoo Search”&lt;br&gt;[3]: &lt;a href=&quot;http://search.msn.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://search.msn.com/&lt;/a&gt; “MSN Search”&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;图片&quot;&gt;&lt;a href=&quot;#图片&quot; class=&quot;headerlink&quot; title=&quot;图片&quot;&gt;&lt;/a&gt;图片&lt;/h2&gt;&lt;p&gt;1.行内&lt;br&gt;2.参考形式&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;p&gt;一行代码&lt;br&gt;``之间加内容&lt;br&gt;多行代码&lt;br&gt;一行空白+tab &lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h2&gt;</content>
+    <content type="html">&lt;h2 id=&quot;标题语法&quot;&gt;&lt;a href=&quot;#标题语法&quot; class=&quot;headerlink&quot; title=&quot;标题语法&quot;&gt;&lt;/a&gt;标题语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Setext形式
+    &amp;quot;=&amp;quot;     (第一阶标题)
+    &amp;quot;-&amp;quot;     (第二阶标题)
+atx形式
+    1~6个&amp;quot;#&amp;quot;，对应标题的1到6阶
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;&gt; 内容&lt;/p&gt;
+&lt;h2 id=&quot;强调&quot;&gt;&lt;a href=&quot;#强调&quot; class=&quot;headerlink&quot; title=&quot;强调&quot;&gt;&lt;/a&gt;强调&lt;/h2&gt;&lt;p&gt;*内容* == _内容_ == 斜体&lt;br&gt;*&lt;em&gt;内容*&lt;/em&gt; == __内容__ == 粗体&lt;/p&gt;
+&lt;h2 id=&quot;列表&quot;&gt;&lt;a href=&quot;#列表&quot; class=&quot;headerlink&quot; title=&quot;列表&quot;&gt;&lt;/a&gt;列表&lt;/h2&gt;&lt;p&gt;无序列表&lt;br&gt;与前一行相隔一行，在写上- 文本&lt;/p&gt;
+&lt;p&gt;有序列表&lt;br&gt;与前一行相隔一行，在使用数字加点&lt;/p&gt;
+&lt;h2 id=&quot;链接&quot;&gt;&lt;a href=&quot;#链接&quot; class=&quot;headerlink&quot; title=&quot;链接&quot;&gt;&lt;/a&gt;链接&lt;/h2&gt;&lt;p&gt;[描述](链接)&lt;/p&gt;
+&lt;h2 id=&quot;图片&quot;&gt;&lt;a href=&quot;#图片&quot; class=&quot;headerlink&quot; title=&quot;图片&quot;&gt;&lt;/a&gt;图片&lt;/h2&gt;&lt;p&gt;![描述](链接)&lt;/p&gt;
+&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;行内代码块&lt;br&gt;`代码`&lt;/li&gt;
+&lt;li&gt;代码块&lt;br&gt;一行空白+tab+代码&lt;/li&gt;
+&lt;li&gt;代码块高亮&lt;br&gt;\&lt;figure class=&quot;highlight livescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; 代码块&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;\&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;删除线&quot;&gt;&lt;a href=&quot;#删除线&quot; class=&quot;headerlink&quot; title=&quot;删除线&quot;&gt;&lt;/a&gt;删除线&lt;/h2&gt;&lt;p&gt;使用&lt;del&gt;表示删除线&lt;br&gt;~~文字&lt;/del&gt;&lt;/p&gt;
+</content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;标题语法&quot;&gt;&lt;a href=&quot;#标题语法&quot; class=&quot;headerlink&quot; title=&quot;标题语法&quot;&gt;&lt;/a&gt;标题语法&lt;/h2&gt;&lt;p&gt;有两种形式&lt;br&gt;1.Setext形式&lt;br&gt;“=”     (最高阶标题)&lt;br&gt;“-“     (第二阶标题)&lt;br&gt;2
+      &lt;h2 id=&quot;标题语法&quot;&gt;&lt;a href=&quot;#标题语法&quot; class=&quot;headerlink&quot; title=&quot;标题语法&quot;&gt;&lt;/a&gt;标题语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Setext形式
+    &amp;quot;=&amp;quot;     (第一阶标题)
+    &amp;quot;-&amp;quo
     
     </summary>
     
