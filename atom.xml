@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-05-28T10:04:24.628Z</updated>
+  <updated>2016-05-28T10:09:33.558Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mirrornight.github.io/2016/05/28/markdown/"/>
     <id>http://mirrornight.github.io/2016/05/28/markdown/</id>
     <published>2016-05-28T08:14:56.000Z</published>
-    <updated>2016-05-28T10:04:24.628Z</updated>
+    <updated>2016-05-28T10:09:33.558Z</updated>
     
     <content type="html">&lt;h2 id=&quot;标题语法&quot;&gt;&lt;a href=&quot;#标题语法&quot; class=&quot;headerlink&quot; title=&quot;标题语法&quot;&gt;&lt;/a&gt;标题语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Setext形式
     &amp;quot;=&amp;quot;     (第一阶标题)
@@ -38,8 +38,7 @@ atx形式
 &lt;li&gt;代码块&lt;br&gt;一行空白+tab+代码&lt;/li&gt;
 &lt;li&gt;代码块高亮&lt;br&gt;```&lt;br&gt;代码块&lt;br&gt;```&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;删除线&quot;&gt;&lt;a href=&quot;#删除线&quot; class=&quot;headerlink&quot; title=&quot;删除线&quot;&gt;&lt;/a&gt;删除线&lt;/h2&gt;&lt;p&gt;使用双波浪号表示删除线&lt;/p&gt;
-&lt;p&gt;  &lt;del&gt;文字&lt;/del&gt;&lt;/p&gt;
+&lt;h2 id=&quot;删除线&quot;&gt;&lt;a href=&quot;#删除线&quot; class=&quot;headerlink&quot; title=&quot;删除线&quot;&gt;&lt;/a&gt;删除线&lt;/h2&gt;&lt;p&gt;使用双波浪号表示删除线&lt;br&gt;&lt;code&gt;~~文字~~&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://wowubuntu.com/markdown/basic.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Markdown 语法说明 (简体中文版)&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Cmd Markdown 简明语法手册&lt;/a&gt;&lt;/p&gt;
 </content>
     
@@ -53,26 +52,6 @@ atx形式
     
     
       <category term="markdown" scheme="http://mirrornight.github.io/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>测试</title>
-    <link href="http://mirrornight.github.io/2016/05/28/my-new-post/"/>
-    <id>http://mirrornight.github.io/2016/05/28/my-new-post/</id>
-    <published>2016-05-28T02:01:59.000Z</published>
-    <updated>2016-05-28T02:03:46.763Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="python" scheme="http://mirrornight.github.io/categories/python/"/>
-    
-    
-      <category term="python" scheme="http://mirrornight.github.io/tags/python/"/>
     
   </entry>
   
