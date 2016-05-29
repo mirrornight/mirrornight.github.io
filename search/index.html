@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://mirrornight.github.io/search/index.html">
 <meta property="og:site_name" content="mirror night的博客">
 <meta property="og:description">
-<meta property="og:updated_time" content="2016-05-28T03:49:45.437Z">
+<meta property="og:updated_time" content="2016-05-29T04:42:45.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="search">
 <meta name="twitter:description">
@@ -78,19 +78,22 @@
 <div  id="main" class="page">
   <div id='cse' style='width:100%;text-align:center'>正在加载搜索结果，请稍等。</div>
 </div>
-
-<script>
-  (function() {
-    var cx = '012476519282920025201:s15yxlny5mk';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
+<script src="http://www.google.com.hk/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+google.load('search', '1', {language : 'zh-CN',style: google.loader.themes.MINIMALIST});
+google.setOnLoadCallback(function(){
+  var customSearchControl = new google.search.CustomSearchControl('012476519282920025201:s15yxlny5mk');
+  customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+  var options = new google.search.DrawOptions();
+  options.setAutoComplete(true);
+  customSearchControl.draw('cse', options);
+  var match = location.search.match(/q=([^&]*)(&|$)/);
+  if(match && match[1]){
+    var search = decodeURIComponent(match[1]); 
+    customSearchControl.execute(search);
+  }
+},true);
 </script>
-<gcse:searchbox></gcse:searchbox>
 
 
 
