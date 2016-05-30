@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-05-30T13:03:49.278Z</updated>
+  <updated>2016-05-30T13:06:17.969Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -20,17 +20,19 @@
     <link href="http://mirrornight.github.io/2016/05/30/pip%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83/"/>
     <id>http://mirrornight.github.io/2016/05/30/pip命令参考/</id>
     <published>2016-05-30T13:00:28.000Z</published>
-    <updated>2016-05-30T13:03:49.278Z</updated>
+    <updated>2016-05-30T13:06:17.969Z</updated>
     
-    <content type="html">&lt;p&gt;‘’’&lt;br&gt;Usage:&lt;br&gt;  pip &lt;command&gt; [options]&lt;/p&gt;
+    <content type="html">&lt;p&gt;‘’’&lt;/p&gt;
+&lt;p&gt;Usage:&lt;br&gt;  pip &lt;command&gt; [options]&lt;/p&gt;
 &lt;p&gt;Commands:&lt;br&gt;  install                     Install packages.&lt;br&gt;  download                    Download packages.&lt;br&gt;  uninstall                   Uninstall packages.&lt;br&gt;  freeze                      Output installed packages in requirements format.&lt;br&gt;  list                        List installed packages.&lt;br&gt;  show                        Show information about installed packages.&lt;br&gt;  search                      Search PyPI for packages.&lt;br&gt;  wheel                       Build wheels from your requirements.&lt;br&gt;  hash                        Compute hashes of package archives.&lt;br&gt;  completion                  A helper command used for command completion&lt;br&gt;  help                        Show help for commands.&lt;/p&gt;
 &lt;p&gt;General Options:&lt;br&gt;  -h, –help                  Show help.&lt;br&gt;  –isolated                  Run pip in an isolated mode, ignoring&lt;br&gt;                              environment variables and user configuration.&lt;br&gt;  -v, –verbose               Give more output. Option is additive, and can be&lt;br&gt;                              used up to 3 times.&lt;br&gt;  -V, –version               Show version and exit.&lt;br&gt;  -q, –quiet                 Give less output.&lt;br&gt;  –log &lt;path&gt;&lt;/path&gt;                Path to a verbose appending log.&lt;br&gt;  –proxy &lt;proxy&gt;             Specify a proxy in the form&lt;br&gt;                              [user:passwd@]proxy.server:port.&lt;br&gt;  –retries &lt;retries&gt;         Maximum number of retries each connection should&lt;br&gt;                              attempt (default 5 times).&lt;br&gt;  –timeout &lt;sec&gt;             Set the socket timeout (default 15 seconds).&lt;br&gt;  –exists-action &lt;action&gt;    Default action when a path already exists:&lt;br&gt;                              (s)witch, (i)gnore, (w)ipe, (b)ackup.&lt;br&gt;  –trusted-host &lt;hostname&gt;   Mark this host as trusted, even though it does&lt;br&gt;                              not have valid or any HTTPS.&lt;br&gt;  –cert &lt;path&gt;&lt;/path&gt;               Path to alternate CA bundle.&lt;br&gt;  –client-cert &lt;path&gt;&lt;/path&gt;        Path to SSL client certificate, a single file&lt;br&gt;                              containing the private key and the certificate&lt;br&gt;                              in PEM format.&lt;br&gt;  –cache-dir &lt;dir&gt;           Store the cache data in &lt;dir&gt;.&lt;br&gt;  –no-cache-dir              Disable the cache.&lt;br&gt;  –disable-pip-version-check&lt;br&gt;                              Don’t periodically check PyPI to determine&lt;br&gt;                              whether a new version of pip is available for&lt;br&gt;                              download. Implied with –no-index.&lt;br&gt;‘’’&lt;/dir&gt;&lt;/dir&gt;&lt;/hostname&gt;&lt;/action&gt;&lt;/sec&gt;&lt;/retries&gt;&lt;/proxy&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;‘’’&lt;br&gt;Usage:&lt;br&gt;  pip &lt;command&gt; [options]&lt;/p&gt;
-&lt;p&gt;Commands:&lt;br&gt;  install                     Install packages.&lt;br&gt;  download             
+      &lt;p&gt;‘’’&lt;/p&gt;
+&lt;p&gt;Usage:&lt;br&gt;  pip &lt;command&gt; [options]&lt;/p&gt;
+&lt;p&gt;Commands:&lt;br&gt;  install                     Install packages.&lt;br&gt;  download         
     
     </summary>
     
