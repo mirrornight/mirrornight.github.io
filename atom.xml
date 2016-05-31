@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-05-30T13:15:05.788Z</updated>
+  <updated>2016-05-31T08:35:18.945Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git学习笔记</title>
+    <link href="http://mirrornight.github.io/2016/05/31/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://mirrornight.github.io/2016/05/31/git学习笔记/</id>
+    <published>2016-05-31T07:52:53.000Z</published>
+    <updated>2016-05-31T08:35:18.945Z</updated>
+    
+    <content type="html">&lt;p&gt;###不同颜色的分支所代表的含义&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;青色：代表本地储存库和远端储存库是同步状态&lt;/li&gt;
+&lt;li&gt;红色：本地储存库的版本比远端储存库落后&lt;br&gt;&lt;code&gt;git pull把远端储存库的变更抓回来更新本地储存库&lt;/code&gt;                  &lt;/li&gt;
+&lt;li&gt;黄色：目前本地储存库有些版本超前于远端储存库，而有些落后&lt;br&gt;&lt;code&gt;先 git pull 在 git push 把本地的版本推送上去&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;绿色：代表本地储存库超前于远端储存库&lt;br&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###参考&lt;br&gt;&lt;a href=&quot;http://blog.miniasp.com/post/2014/01/05/The-color-meaning-in-Git-Shell-prompt.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub for Windows 內建 Git Shell 執行時顏色所代表的意義 &lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      关于git命令和git shell介绍
+    
+    </summary>
+    
+      <category term="命令参考手册" scheme="http://mirrornight.github.io/categories/%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/"/>
+    
+    
+      <category term="git" scheme="http://mirrornight.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>pip命令参考</title>
