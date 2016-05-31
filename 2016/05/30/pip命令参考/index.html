@@ -12,16 +12,37 @@
     
 
     
-    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344Usage:  pip &amp;lt;command&amp;gt; [options]Commands:  install                     Install packages.  download">
+    <meta name="description" content="Usage:
+  pip &amp;lt;command&amp;gt; [options]
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pip命令参考">
 <meta property="og:url" content="http://mirrornight.github.io/2016/05/30/pip命令参考/index.html">
 <meta property="og:site_name" content="mirror night的博客">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344Usage:  pip &amp;lt;command&amp;gt; [options]Commands:  install                     Install packages.  download">
+<meta property="og:description" content="Usage:
+  pip &amp;lt;command&amp;gt; [options]
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  f">
 <meta property="og:updated_time" content="2016-05-30T13:15:05.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pip命令参考">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344Usage:  pip &amp;lt;command&amp;gt; [options]Commands:  install                     Install packages.  download">
+<meta name="twitter:description" content="Usage:
+  pip &amp;lt;command&amp;gt; [options]
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  f">
 
     
     <link rel="alternative" href="/atom.xml" title="mirror night的博客" type="application/atom+xml">
@@ -32,6 +53,7 @@
     
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.4.0/styles/gruvbox-dark.min.css">
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -100,7 +122,52 @@
 		
 		</div>
 		
-		<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">Usage:</span><br><span class="line">  pip &lt;<span class="built_in">command</span>&gt; [options]</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  install                     Install packages.</span><br><span class="line">  download                    Download packages.</span><br><span class="line">  uninstall                   Uninstall packages.</span><br><span class="line">  freeze                      Output installed packages <span class="keyword">in</span> requirements format.</span><br><span class="line">  list                        List installed packages.</span><br><span class="line">  show                        Show information about installed packages.</span><br><span class="line">  search                      Search PyPI <span class="keyword">for</span> packages.</span><br><span class="line">  wheel                       Build wheels from your requirements.</span><br><span class="line">  <span class="built_in">hash</span>                        Compute hashes of package archives.</span><br><span class="line">  completion                  A helper <span class="built_in">command</span> used <span class="keyword">for</span> <span class="built_in">command</span> completion</span><br><span class="line">  <span class="built_in">help</span>                        Show <span class="built_in">help</span> <span class="keyword">for</span> commands.</span><br><span class="line"></span><br><span class="line">General Options:</span><br><span class="line">  -h, --help                  Show help.</span><br><span class="line">  --isolated                  Run pip <span class="keyword">in</span> an isolated mode, ignoring</span><br><span class="line">                              environment variables and user configuration.</span><br><span class="line">  -v, --verbose               Give more output. Option is additive, and can be</span><br><span class="line">                              used up to 3 times.</span><br><span class="line">  -V, --version               Show version and exit.</span><br><span class="line">  -q, --quiet                 Give less output.</span><br><span class="line">  --log &lt;path&gt;                Path to a verbose appending log.</span><br><span class="line">  --proxy &lt;proxy&gt;             Specify a proxy <span class="keyword">in</span> the form</span><br><span class="line">                              [user:passwd@]proxy.server:port.</span><br><span class="line">  --retries &lt;retries&gt;         Maximum number of retries each connection should</span><br><span class="line">                              attempt (default 5 <span class="built_in">times</span>).</span><br><span class="line">  --timeout &lt;sec&gt;             Set the socket timeout (default 15 seconds).</span><br><span class="line">  --exists-action &lt;action&gt;    Default action when a path already exists:</span><br><span class="line">                              (s)witch, (i)gnore, (w)ipe, (b)ackup.</span><br><span class="line">  --trusted-host &lt;hostname&gt;   Mark this host as trusted, even though it does</span><br><span class="line">                              not have valid or any HTTPS.</span><br><span class="line">  --cert &lt;path&gt;               Path to alternate CA bundle.</span><br><span class="line">  --client-cert &lt;path&gt;        Path to SSL client certificate, a single file</span><br><span class="line">                              containing the private key and the certificate</span><br><span class="line">                              <span class="keyword">in</span> PEM format.</span><br><span class="line">  --cache-dir &lt;dir&gt;           Store the cache data <span class="keyword">in</span> &lt;dir&gt;.</span><br><span class="line">  --no-cache-dir              Disable the cache.</span><br><span class="line">  --disable-pip-version-check</span><br><span class="line">                              Don<span class="string">'t periodically check PyPI to determine</span><br><span class="line">                              whether a new version of pip is available for</span><br><span class="line">                              download. Implied with --no-index.</span></span><br></pre></td></tr></table></figure>  
+		<pre><code class="bash">Usage:
+  pip &lt;command&gt; [options]
+
+Commands:
+  install                     Install packages.
+  download                    Download packages.
+  uninstall                   Uninstall packages.
+  freeze                      Output installed packages in requirements format.
+  list                        List installed packages.
+  show                        Show information about installed packages.
+  search                      Search PyPI for packages.
+  wheel                       Build wheels from your requirements.
+  hash                        Compute hashes of package archives.
+  completion                  A helper command used for command completion
+  help                        Show help for commands.
+
+General Options:
+  -h, --help                  Show help.
+  --isolated                  Run pip in an isolated mode, ignoring
+                              environment variables and user configuration.
+  -v, --verbose               Give more output. Option is additive, and can be
+                              used up to 3 times.
+  -V, --version               Show version and exit.
+  -q, --quiet                 Give less output.
+  --log &lt;path&gt;                Path to a verbose appending log.
+  --proxy &lt;proxy&gt;             Specify a proxy in the form
+                              [user:passwd@]proxy.server:port.
+  --retries &lt;retries&gt;         Maximum number of retries each connection should
+                              attempt (default 5 times).
+  --timeout &lt;sec&gt;             Set the socket timeout (default 15 seconds).
+  --exists-action &lt;action&gt;    Default action when a path already exists:
+                              (s)witch, (i)gnore, (w)ipe, (b)ackup.
+  --trusted-host &lt;hostname&gt;   Mark this host as trusted, even though it does
+                              not have valid or any HTTPS.
+  --cert &lt;path&gt;               Path to alternate CA bundle.
+  --client-cert &lt;path&gt;        Path to SSL client certificate, a single file
+                              containing the private key and the certificate
+                              in PEM format.
+  --cache-dir &lt;dir&gt;           Store the cache data in &lt;dir&gt;.
+  --no-cache-dir              Disable the cache.
+  --disable-pip-version-check
+                              Don&#39;t periodically check PyPI to determine
+                              whether a new version of pip is available for
+                              download. Implied with --no-index.
+</code></pre>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -185,15 +252,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -441,6 +508,9 @@ $(document).ready(function(){
   }
 }); 
 </script>
+<script src="//cdn.bootcss.com/highlight.js/9.4.0/languages/markdown.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.4.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 
 
