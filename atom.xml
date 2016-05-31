@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-05-31T08:45:23.559Z</updated>
+  <updated>2016-05-31T09:47:24.997Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -20,15 +20,57 @@
     <link href="http://mirrornight.github.io/2016/05/31/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://mirrornight.github.io/2016/05/31/git学习笔记/</id>
     <published>2016-05-31T07:52:53.000Z</published>
-    <updated>2016-05-31T08:45:23.559Z</updated>
+    <updated>2016-05-31T09:47:24.997Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;不同颜色的分支所代表的含义&quot;&gt;&lt;a href=&quot;#不同颜色的分支所代表的含义&quot; class=&quot;headerlink&quot; title=&quot;不同颜色的分支所代表的含义&quot;&gt;&lt;/a&gt;不同颜色的分支所代表的含义&lt;/h3&gt;&lt;ul&gt;
+    <content type="html">&lt;h2 id=&quot;不同颜色的分支所代表的含义&quot;&gt;&lt;a href=&quot;#不同颜色的分支所代表的含义&quot; class=&quot;headerlink&quot; title=&quot;不同颜色的分支所代表的含义&quot;&gt;&lt;/a&gt;不同颜色的分支所代表的含义&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;青色：代表本地储存库和远端储存库是同步状态&lt;/li&gt;
 &lt;li&gt;红色：本地储存库的版本比远端储存库落后&lt;br&gt;&lt;code&gt;git pull把远端储存库的变更抓回来更新本地储存库&lt;/code&gt;                  &lt;/li&gt;
 &lt;li&gt;黄色：目前本地储存库有些版本超前于远端储存库，而有些落后&lt;br&gt;&lt;code&gt;先 git pull 在 git push 把本地的版本推送上去&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;绿色：代表本地储存库超前于远端储存库&lt;br&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://blog.miniasp.com/post/2014/01/05/The-color-meaning-in-Git-Shell-prompt.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub for Windows 內建 Git Shell 執行時顏色所代表的意義 &lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;git-shell命令&quot;&gt;&lt;a href=&quot;#git-shell命令&quot; class=&quot;headerlink&quot; title=&quot;git shell命令&quot;&gt;&lt;/a&gt;git shell命令&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;usage: git [--version] [--help] [-C &amp;lt;path&amp;gt;] [-c name=value]
+           [--exec-path[=&amp;lt;path&amp;gt;]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=&amp;lt;path&amp;gt;] [--work-tree=&amp;lt;path&amp;gt;] [--namespace=&amp;lt;name&amp;gt;]
+           &amp;lt;command&amp;gt; [&amp;lt;args&amp;gt;]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+&amp;#39;git help -a&amp;#39; and &amp;#39;git help -g&amp;#39; list available subcommands and some
+concept guides. See &amp;#39;git help &amp;lt;command&amp;gt;&amp;#39; or &amp;#39;git help &amp;lt;concept&amp;gt;&amp;#39;
+to read about a specific subcommand or concept.
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;http://blog.miniasp.com/post/2014/01/05/The-color-meaning-in-Git-Shell-prompt.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub for Windows 內建 Git Shell 執行時顏色所代表的意義 &lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -49,9 +91,9 @@
     <link href="http://mirrornight.github.io/2016/05/30/pip%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83/"/>
     <id>http://mirrornight.github.io/2016/05/30/pip命令参考/</id>
     <published>2016-05-30T13:00:28.000Z</published>
-    <updated>2016-05-30T13:15:05.788Z</updated>
+    <updated>2016-05-31T09:47:20.795Z</updated>
     
-    <content type="html">&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Usage:
+    <content type="html">&lt;pre&gt;&lt;code&gt;Usage:
   pip &amp;lt;command&amp;gt; [options]
 
 Commands:
@@ -95,17 +137,16 @@ General Options:
                               Don&amp;#39;t periodically check PyPI to determine
                               whether a new version of pip is available for
                               download. Implied with --no-index.
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
-      &lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Usage:
+      &lt;pre&gt;&lt;code&gt;Usage:
   pip &amp;lt;command&amp;gt; [options]
 
 Commands:
   install                     Install packages.
-  download        
+  download                    D
     
     </summary>
     
@@ -121,7 +162,7 @@ Commands:
     <link href="http://mirrornight.github.io/2016/05/28/markdown/"/>
     <id>http://mirrornight.github.io/2016/05/28/markdown/</id>
     <published>2016-05-28T08:14:56.000Z</published>
-    <updated>2016-05-31T08:47:40.802Z</updated>
+    <updated>2016-05-31T08:48:32.010Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;注意：以下内容测试环境为hexo中&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&quot;标题语法&quot;&gt;&lt;a href=&quot;#标题语法&quot; class=&quot;headerlink&quot; title=&quot;标题语法&quot;&gt;&lt;/a&gt;标题语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Setext形式
