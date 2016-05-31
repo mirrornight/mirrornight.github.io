@@ -121,7 +121,7 @@ Commands:
     <link href="http://mirrornight.github.io/2016/05/28/markdown/"/>
     <id>http://mirrornight.github.io/2016/05/28/markdown/</id>
     <published>2016-05-28T08:14:56.000Z</published>
-    <updated>2016-05-31T08:45:18.293Z</updated>
+    <updated>2016-05-31T08:47:40.802Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;注意：以下内容测试环境为hexo中&lt;/strong&gt;&lt;/p&gt;
 &lt;h2 id=&quot;标题语法&quot;&gt;&lt;a href=&quot;#标题语法&quot; class=&quot;headerlink&quot; title=&quot;标题语法&quot;&gt;&lt;/a&gt;标题语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Setext形式
@@ -129,7 +129,7 @@ Commands:
     &amp;quot;-&amp;quot;     (第二阶标题)
 atx形式
     1~6个&amp;quot;#&amp;quot;，对应标题的1到6阶
-    星号后面要有一个空格
+    井号后面要有一个空格
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;&gt; 内容&lt;/p&gt;
 &lt;h2 id=&quot;强调&quot;&gt;&lt;a href=&quot;#强调&quot; class=&quot;headerlink&quot; title=&quot;强调&quot;&gt;&lt;/a&gt;强调&lt;/h2&gt;&lt;p&gt;*内容* == _内容_ == 斜体&lt;br&gt;*&lt;em&gt;内容*&lt;/em&gt; == __内容__ == 粗体&lt;/p&gt;
 &lt;h2 id=&quot;列表&quot;&gt;&lt;a href=&quot;#列表&quot; class=&quot;headerlink&quot; title=&quot;列表&quot;&gt;&lt;/a&gt;列表&lt;/h2&gt;&lt;p&gt;无序列表&lt;br&gt;与前一行相隔一行，在写上- 文本&lt;/p&gt;
@@ -138,7 +138,7 @@ atx形式
 &lt;h2 id=&quot;图片&quot;&gt;&lt;a href=&quot;#图片&quot; class=&quot;headerlink&quot; title=&quot;图片&quot;&gt;&lt;/a&gt;图片&lt;/h2&gt;&lt;p&gt;![描述](链接)&lt;/p&gt;
 &lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;行内代码块&lt;br&gt;`代码`&lt;/li&gt;
-&lt;li&gt;代码块&lt;br&gt;一行空白+tab+代码&lt;/li&gt;
+&lt;li&gt;代码块&lt;br&gt;双tab+代码&lt;/li&gt;
 &lt;li&gt;代码块高亮&lt;br&gt;```&lt;br&gt;代码块&lt;br&gt;```&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;删除线&quot;&gt;&lt;a href=&quot;#删除线&quot; class=&quot;headerlink&quot; title=&quot;删除线&quot;&gt;&lt;/a&gt;删除线&lt;/h2&gt;&lt;p&gt;使用双波浪号表示删除线&lt;br&gt;&lt;code&gt;~~文字~~&lt;/code&gt;&lt;/p&gt;
