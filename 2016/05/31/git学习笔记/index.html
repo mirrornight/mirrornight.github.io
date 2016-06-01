@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://mirrornight.github.io/2016/05/31/git学习笔记/index.html">
 <meta property="og:site_name" content="mirror night的博客">
 <meta property="og:description" content="关于git命令和git shell介绍">
-<meta property="og:updated_time" content="2016-05-31T09:47:24.997Z">
+<meta property="og:updated_time" content="2016-06-01T02:34:18.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git学习笔记">
 <meta name="twitter:description" content="关于git命令和git shell介绍">
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">2.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">2.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -106,6 +106,14 @@
 <li>红色：本地储存库的版本比远端储存库落后<br><code>git pull把远端储存库的变更抓回来更新本地储存库</code>                  </li>
 <li>黄色：目前本地储存库有些版本超前于远端储存库，而有些落后<br><code>先 git pull 在 git push 把本地的版本推送上去</code></li>
 <li>绿色：代表本地储存库超前于远端储存库<br><code>git push</code></li>
+</ul>
+<h2 id="工作目录档案状态符号与颜色所代表的含义"><a href="#工作目录档案状态符号与颜色所代表的含义" class="headerlink" title="工作目录档案状态符号与颜色所代表的含义"></a>工作目录档案状态符号与颜色所代表的含义</h2><ul>
+<li><code>+</code> = 有 n 个新增档案</li>
+<li><code>~</code> = 有 n 个档案被更新</li>
+<li><code>-</code> = 有 n 个档案被删除</li>
+<li><code>!</code> = 有 n 个档案在合并时发生冲突</li>
+<li>暗红色：代表这些档案处于untracked 或not staged状态</li>
+<li>暗绿色：代表这些档案处于staged状态</li>
 </ul>
 <h2 id="git-shell命令"><a href="#git-shell命令" class="headerlink" title="git shell命令"></a>git shell命令</h2><pre><code>usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
            [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
@@ -204,7 +212,7 @@ to read about a specific subcommand or concept.
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">2.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">2.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
  
   </div>
 
@@ -239,15 +247,15 @@ to read about a specific subcommand or concept.
 			
 		
 			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
 			
 		
 		</ul>

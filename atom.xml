@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-05-31T09:47:24.997Z</updated>
+  <updated>2016-06-01T02:34:18.677Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -20,13 +20,21 @@
     <link href="http://mirrornight.github.io/2016/05/31/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://mirrornight.github.io/2016/05/31/git学习笔记/</id>
     <published>2016-05-31T07:52:53.000Z</published>
-    <updated>2016-05-31T09:47:24.997Z</updated>
+    <updated>2016-06-01T02:34:18.677Z</updated>
     
     <content type="html">&lt;h2 id=&quot;不同颜色的分支所代表的含义&quot;&gt;&lt;a href=&quot;#不同颜色的分支所代表的含义&quot; class=&quot;headerlink&quot; title=&quot;不同颜色的分支所代表的含义&quot;&gt;&lt;/a&gt;不同颜色的分支所代表的含义&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;青色：代表本地储存库和远端储存库是同步状态&lt;/li&gt;
 &lt;li&gt;红色：本地储存库的版本比远端储存库落后&lt;br&gt;&lt;code&gt;git pull把远端储存库的变更抓回来更新本地储存库&lt;/code&gt;                  &lt;/li&gt;
 &lt;li&gt;黄色：目前本地储存库有些版本超前于远端储存库，而有些落后&lt;br&gt;&lt;code&gt;先 git pull 在 git push 把本地的版本推送上去&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;绿色：代表本地储存库超前于远端储存库&lt;br&gt;&lt;code&gt;git push&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;工作目录档案状态符号与颜色所代表的含义&quot;&gt;&lt;a href=&quot;#工作目录档案状态符号与颜色所代表的含义&quot; class=&quot;headerlink&quot; title=&quot;工作目录档案状态符号与颜色所代表的含义&quot;&gt;&lt;/a&gt;工作目录档案状态符号与颜色所代表的含义&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt; = 有 n 个新增档案&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~&lt;/code&gt; = 有 n 个档案被更新&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-&lt;/code&gt; = 有 n 个档案被删除&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;!&lt;/code&gt; = 有 n 个档案在合并时发生冲突&lt;/li&gt;
+&lt;li&gt;暗红色：代表这些档案处于untracked 或not staged状态&lt;/li&gt;
+&lt;li&gt;暗绿色：代表这些档案处于staged状态&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;git-shell命令&quot;&gt;&lt;a href=&quot;#git-shell命令&quot; class=&quot;headerlink&quot; title=&quot;git shell命令&quot;&gt;&lt;/a&gt;git shell命令&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;usage: git [--version] [--help] [-C &amp;lt;path&amp;gt;] [-c name=value]
            [--exec-path[=&amp;lt;path&amp;gt;]] [--html-path] [--man-path] [--info-path]

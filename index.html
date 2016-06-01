@@ -101,6 +101,14 @@
 <li>黄色：目前本地储存库有些版本超前于远端储存库，而有些落后<br><code>先 git pull 在 git push 把本地的版本推送上去</code></li>
 <li>绿色：代表本地储存库超前于远端储存库<br><code>git push</code></li>
 </ul>
+<h2 id="工作目录档案状态符号与颜色所代表的含义"><a href="#工作目录档案状态符号与颜色所代表的含义" class="headerlink" title="工作目录档案状态符号与颜色所代表的含义"></a>工作目录档案状态符号与颜色所代表的含义</h2><ul>
+<li><code>+</code> = 有 n 个新增档案</li>
+<li><code>~</code> = 有 n 个档案被更新</li>
+<li><code>-</code> = 有 n 个档案被删除</li>
+<li><code>!</code> = 有 n 个档案在合并时发生冲突</li>
+<li>暗红色：代表这些档案处于untracked 或not staged状态</li>
+<li>暗绿色：代表这些档案处于staged状态</li>
+</ul>
 <h2 id="git-shell命令"><a href="#git-shell命令" class="headerlink" title="git shell命令"></a>git shell命令</h2><pre><code>usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
            [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
            [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
@@ -468,15 +476,15 @@ atx形式
 			
 		
 			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
 			
 		
 		</ul>
