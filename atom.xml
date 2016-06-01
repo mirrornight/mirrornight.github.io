@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-06-01T10:30:18.677Z</updated>
+  <updated>2016-06-01T13:25:18.209Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -20,9 +20,22 @@
     <link href="http://mirrornight.github.io/2016/06/01/python%E7%BC%96%E8%A7%A3%E7%A0%81%E9%97%AE%E9%A2%98/"/>
     <id>http://mirrornight.github.io/2016/06/01/python编解码问题/</id>
     <published>2016-06-01T07:05:02.000Z</published>
-    <updated>2016-06-01T10:30:18.677Z</updated>
+    <updated>2016-06-01T13:25:18.209Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;为什么要编码？&quot;&gt;&lt;a href=&quot;#为什么要编码？&quot; class=&quot;headerlink&quot; title=&quot;为什么要编码？&quot;&gt;&lt;/a&gt;为什么要编码？&lt;/h2&gt;&lt;p&gt;编码是为了兼容字符集之间的通用性， 通常可以编码的地方有：&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;strong&gt;还是没搞懂，待修改&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;字符集是什么？&lt;/strong&gt;&lt;br&gt;字符集（Charset）：是一个系统支持的所有抽象字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;字符编码是什么？&lt;/strong&gt;&lt;br&gt;字符编码（Character Encoding）：是一套法则，使用该法则能够对自然语言的字符的一个集合（如字母表或音节表），与其他东西的一个集合（如号码或电脉冲）进行配对。即在符号集合与数字系统之间建立对应关系，它是信息处理的一项基本技术。通常人们用符号集合（一般情况下就是文字）来表达信息。而以计算机为基础的信息处理系统则是利用元件（硬件）不同状态的组合来存储和处理信息的。元件不同状态的组合能代表数字系统的数字，因此字符编码就是将符号转换为计算机可以接受的数字系统的数，称为数字代码。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;常用的字符集和字符编码&lt;/strong&gt;&lt;br&gt;常见字符集名称：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集等。计算机要准确的处理各种字符集文字，需要进行字符编码，以便计算机能够识别和存储各种文字。&lt;/p&gt;
+&lt;p&gt;对应字符集的编码（其中重要的）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;ASCII编码：将ASCII字符集转换为计算机可以接受的数字系统的数的规则。&lt;/code&gt;使用7位（bits）表示一个字符，共128字符；但是7位编码的字符集只能支持128个字符，为了表示更多的欧洲常用字符对ASCII进行了扩展，ASCII扩展字符集使用8位（bits）表示一个字符，共256字符。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Unicode是字符集，UTF-32/ UTF-16/ UTF-8是三种字符编码方案。&lt;/code&gt;&lt;blockquote&gt;
+&lt;p&gt;上述使用4字节的数字来表达每个字母、符号，或者表意文字(ideograph)，每个数字代表唯一的至少在某种语言中使用的符号的编码方案，称为UTF-32。UTF-32又称UCS-4是一种将Unicode字符编码的协定，对每个字符都使用4字节。就空间而言，是非常没有效率的。&lt;/p&gt;
+&lt;p&gt;UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码（定长码），也是一种前缀码。它可以用来表示Unicode标准中的任何字符，且其编码中的第一个字节仍与ASCII兼容，这使得原来处理ASCII字符的软件无须或只须做少部份修改，即可继续使用。因此，它逐渐成为电子邮件、网页及其他存储或传送文字的应用中，优先采用的编码。互联网工程工作小组（IETF）要求所有互联网协议都必须支持UTF-8编码。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;为什么要编码？&quot;&gt;&lt;a href=&quot;#为什么要编码？&quot; class=&quot;headerlink&quot; title=&quot;为什么要编码？&quot;&gt;&lt;/a&gt;为什么要编码？&lt;/h2&gt;&lt;p&gt;编码是为了兼容字符集之间的通用性， 通常可以编码的地方有：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;系统默认编码&lt;/li&gt;
 &lt;li&gt;程序运行环境的编码&lt;/li&gt;
@@ -50,22 +63,36 @@ s = &amp;quot;中文&amp;quot;
 s.encode(&amp;#39;gbk&amp;#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;上面的代码回报错，为：UnicodeDecodeError: ‘gb2312’ codec can’t decode bytes in position 4-5…&lt;/p&gt;
-&lt;h2 id=&quot;字符编码&quot;&gt;&lt;a href=&quot;#字符编码&quot; class=&quot;headerlink&quot; title=&quot;字符编码&quot;&gt;&lt;/a&gt;字符编码&lt;/h2&gt;&lt;blockquote&gt;
+&lt;h2 id=&quot;字符编码&quot;&gt;&lt;a href=&quot;#字符编码&quot; class=&quot;headerlink&quot; title=&quot;字符编码&quot;&gt;&lt;/a&gt;字符编码&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;unicode的问题&lt;/strong&gt;&lt;br&gt;需要注意的是，Unicode只是一个符号集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。&lt;br&gt;&lt;strong&gt;第一个问题是，如何才能区别Unicode和ASCII？计算机怎么知道三个字节表示一个符号，而不是分别表示三个符号呢？&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;第二个问题是，我们已经知道，英文字母只用一个字节表示就够了，如果Unicode统一规定，每个符号用三个或四个字节表示，那么每个英文字母前都必然有二到三个字节是0，这对于存储来说是极大的浪费，文本文件的大小会因此大出二三倍，这是无法接受的。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;此节内容&lt;/strong&gt;来自&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;廖雪峰的官方网站:字符串和编码&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;因为计算机只能处理数字，如果要处理文本，就必须先把文本转换为数字才能处理。&lt;br&gt;8bit为1字节，一字节能表示的最大整数为255&lt;br&gt;最先出来的编码表被称之为&lt;code&gt;ASCII&lt;/code&gt;编码，包括大小写英文字母，数字和一些符号，&lt;strong&gt;一个字节就够了&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;但是要处理中文显然一个字节是不够的，&lt;strong&gt;至少需要两个字节&lt;/strong&gt;，而且还不能和ASCII编码冲突，所以，中国制定了&lt;code&gt;GB2312&lt;/code&gt;编码，用来把中文编进去。&lt;/p&gt;
 &lt;p&gt;全世界有上百种语言，日本把日文编到&lt;code&gt;Shift_JIS&lt;/code&gt;里，韩国把韩文编到&lt;code&gt;Euc-kr&lt;/code&gt;里，各国有各国的标准，就会不可避免地出现冲突，结果就是，在多语言混合的文本中，显示出来会有乱码。&lt;/p&gt;
-&lt;p&gt;因此，&lt;code&gt;Unicode&lt;/code&gt;应运而生。Unicode把所有语言都统一到一套编码里，这样就不会再有乱码问题了。&lt;/p&gt;
+&lt;p&gt;因此，&lt;code&gt;Unicode&lt;/code&gt;应运而生。Unicode把所有语言都统一到一套编码里，这样就不会再有乱码问题了。&lt;br&gt;&lt;code&gt;首先’\u‘开头就基本表明是跟unicode编码相关的，“\u”后的16进制字符串是相应汉字的utf-16编码。&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;ASCII编码和Unicode编码的区别：ASCII编码是1个字节，而Unicode编码通常是2个字节。&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;新的问题又出现了：&lt;br&gt;如果统一成Unicode编码，乱码问题从此消失了。但是，如果你写的文本基本上全部是英文的话，用Unicode编码比ASCII编码需要多一倍的存储空间，在存储和传输上就十分不划算。&lt;br&gt;所以，本着节约的精神，又出现了把Unicode编码转化为“可变长编码”的&lt;code&gt;UTF-8&lt;/code&gt;编码。UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，&lt;code&gt;常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。&lt;/code&gt;如果你要传输的文本包含大量英文字符，用UTF-8编码就能节省空间&lt;/p&gt;
 &lt;p&gt;从上面的表格还可以发现，UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。&lt;/p&gt;
+&lt;p&gt;搞清楚了ASCII、Unicode和UTF-8的关系，我们就可以总结一下现在计算机系统通用的字符编码工作方式：&lt;br&gt;在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。&lt;br&gt;例：用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件&lt;br&gt;例：浏览网页的时候，服务器会把动态生成的Unicode内容转换为UTF-8再传输到浏览器&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2 id=&quot;python的字符串&quot;&gt;&lt;a href=&quot;#python的字符串&quot; class=&quot;headerlink&quot; title=&quot;python的字符串&quot;&gt;&lt;/a&gt;python的字符串&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;此节内容&lt;/strong&gt;来自&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;廖雪峰的官方网站:字符串和编码&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;搞清楚了令人头疼的字符编码问题后，我们再来研究Python对Unicode的支持。&lt;/p&gt;
+&lt;p&gt;因为Python的诞生比Unicode标准发布的时间还要早，所以最早的Python只支持ASCII编码普通的字符串&lt;code&gt;&amp;#39;ABC&amp;#39;&lt;/code&gt;在Python内部都是ASCII编码的。Python提供了&lt;code&gt;ord()&lt;/code&gt;和&lt;code&gt;chr()&lt;/code&gt;函数，可以把字母和对应的数字相互转换 。&lt;/p&gt;
+&lt;p&gt;Python在后来添加了对Unicode的支持，以Unicode表示的字符串用&lt;code&gt;u&amp;#39;...&amp;#39;&lt;/code&gt;表示&lt;br&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; print u&amp;#39;中文&amp;#39;&lt;/code&gt;&lt;br&gt;&lt;code&gt;中文&lt;/code&gt;&lt;br&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; u&amp;#39;中&amp;#39;&lt;/code&gt;&lt;br&gt;&lt;code&gt;u&amp;#39;\u4e2d&amp;#39;&lt;/code&gt;&lt;br&gt;写&lt;code&gt;u&amp;#39;中&amp;#39;&lt;/code&gt;和&lt;code&gt;u&amp;#39;\u4e2d&amp;#39;&lt;/code&gt;是一样的，&lt;code&gt;\u&lt;/code&gt;后面是十六进制的Unicode码。因此，&lt;code&gt;u&amp;#39;A&amp;#39;&lt;/code&gt;和&lt;code&gt;u&amp;#39;\u0041&amp;#39;&lt;/code&gt;也是一样的。&lt;/p&gt;
+&lt;p&gt;两种字符串如何相互转换？&lt;br&gt;字符串&lt;code&gt;&amp;#39;xxx&amp;#39;&lt;/code&gt;虽然是ASCII编码，但也可以看成是UTF-8编码，而&lt;code&gt;u&amp;#39;xxx&amp;#39;&lt;/code&gt;则只能是Unicode编码。&lt;/p&gt;
+&lt;p&gt;把&lt;code&gt;u&amp;#39;xxx&amp;#39;&lt;/code&gt;转换为UTF-8编码的&lt;code&gt;&amp;#39;xxx&amp;#39;&lt;/code&gt;用&lt;code&gt;encode(&amp;#39;utf-8&amp;#39;)&lt;/code&gt;方法：&lt;br&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; u&amp;#39;ABC&amp;#39;.encode(&amp;#39;utf-8&amp;#39;)&lt;/code&gt;&lt;br&gt;&lt;code&gt;&amp;#39;ABC&amp;#39;&lt;/code&gt;&lt;br&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; u&amp;#39;中文&amp;#39;.encode(&amp;#39;utf-8&amp;#39;)&lt;/code&gt;&lt;br&gt;&lt;code&gt;&amp;#39;\xe4\xb8\xad\xe6\x96\x87&amp;#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;反过来，把UTF-8编码表示的字符串&lt;code&gt;&amp;#39;xxx&amp;#39;&lt;/code&gt;转换为Unicode字符串&lt;code&gt;u&amp;#39;xxx&amp;#39;&lt;/code&gt;用&lt;code&gt;decode(&amp;#39;utf-8&amp;#39;)&lt;/code&gt;方法：&lt;br&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &amp;#39;abc&amp;#39;.decode(&amp;#39;utf-8&amp;#39;)&lt;/code&gt;&lt;br&gt;&lt;code&gt;u&amp;#39;abc&amp;#39;&lt;/code&gt;&lt;br&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &amp;#39;\xe4\xb8\xad\xe6\x96\x87&amp;#39;.decode(&amp;#39;utf-8&amp;#39;)&lt;/code&gt;&lt;br&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; print &amp;#39;\xe4\xb8\xad\xe6\x96\x87&amp;#39;.decode(&amp;#39;utf-8&amp;#39;)&lt;/code&gt;&lt;br&gt;&lt;code&gt;中文&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;由于Python源代码也是一个文本文件，所以，当你的源代码中包含中文的时候，在保存源代码时，就需要务必指定保存为UTF-8编码。当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行：&lt;br&gt;&lt;code&gt;#!/usr/bin/env python&lt;/code&gt;&lt;br&gt;&lt;code&gt;# -*- coding: utf-8 -*-&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;相关博客：&lt;br&gt;&lt;a href=&quot;http://liangguanhui.iteye.com/blog/554116&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;五分钟Unicode简单入门&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符编码笔记：ASCII，Unicode和UTF-8&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;廖雪峰的官方网站:字符串和编码&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符集和字符编码（Charset &amp;amp; Encoding）&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;为什么要编码？&quot;&gt;&lt;a href=&quot;#为什么要编码？&quot; class=&quot;headerlink&quot; title=&quot;为什么要编码？&quot;&gt;&lt;/a&gt;为什么要编码？&lt;/h2&gt;&lt;p&gt;编码是为了兼容字符集之间的通用性， 通常可以编码的地方有：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;系统默认编码&lt;
+      &lt;p&gt;&lt;strong&gt;还是没搞懂，待修改&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;字符集是什么？&lt;/strong&gt;&lt;br&gt;字符集（Charset）：是一个系统支持的所有抽象字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。&lt;/p&gt;
+&lt;p&gt;
     
     </summary>
     
