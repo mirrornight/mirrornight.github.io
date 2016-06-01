@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-06-01T02:34:18.677Z</updated>
+  <updated>2016-06-01T10:30:18.677Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python2中编解码问题</title>
+    <link href="http://mirrornight.github.io/2016/06/01/python%E7%BC%96%E8%A7%A3%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://mirrornight.github.io/2016/06/01/python编解码问题/</id>
+    <published>2016-06-01T07:05:02.000Z</published>
+    <updated>2016-06-01T10:30:18.677Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;为什么要编码？&quot;&gt;&lt;a href=&quot;#为什么要编码？&quot; class=&quot;headerlink&quot; title=&quot;为什么要编码？&quot;&gt;&lt;/a&gt;为什么要编码？&lt;/h2&gt;&lt;p&gt;编码是为了兼容字符集之间的通用性， 通常可以编码的地方有：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;系统默认编码&lt;/li&gt;
+&lt;li&gt;程序运行环境的编码&lt;/li&gt;
+&lt;li&gt;源码文件自身的编码&lt;/li&gt;
+&lt;li&gt;程序中的字符串编码&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;相关列举&quot;&gt;&lt;a href=&quot;#相关列举&quot; class=&quot;headerlink&quot; title=&quot;相关列举&quot;&gt;&lt;/a&gt;相关列举&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;如何查询系统默认编码&lt;blockquote&gt;
+&lt;p&gt;使用python查询&lt;br&gt;&gt;&gt;&gt;sys.getdefaultencoding()&lt;br&gt;&gt;&gt;&gt;‘gb2312’        &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;Python运行环境默认的编码是ascII&lt;/li&gt;
+&lt;li&gt;源文件的编码可以设置，不设置就为默认python编码&lt;/li&gt;
+&lt;li&gt;程序内容的编码可以通过python提供的函数来进行转换&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;python中的编码和解码&quot;&gt;&lt;a href=&quot;#python中的编码和解码&quot; class=&quot;headerlink&quot; title=&quot;python中的编码和解码&quot;&gt;&lt;/a&gt;python中的编码和解码&lt;/h2&gt;&lt;p&gt;decode() 解码&lt;br&gt;encode() 编码&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;# -*- coding: utf-8 -*-
+a = &amp;quot;中文&amp;quot;             # a 是一个utf-8格式的字符串
+b = a.decode(&amp;quot;utf-8&amp;quot;)  # a 是被解码为unicode对象，赋给 b
+c = b.encode(&amp;quot;gbk&amp;quot;)    # b 是被编码为gbk格式的字符串，赋给 c
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时的c打印出来为乱码，a和b正常&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;# -*- coding: utf-8 -*-
+s = &amp;quot;中文&amp;quot;
+s.encode(&amp;#39;gbk&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面的代码回报错，为：UnicodeDecodeError: ‘gb2312’ codec can’t decode bytes in position 4-5…&lt;/p&gt;
+&lt;h2 id=&quot;字符编码&quot;&gt;&lt;a href=&quot;#字符编码&quot; class=&quot;headerlink&quot; title=&quot;字符编码&quot;&gt;&lt;/a&gt;字符编码&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;因为计算机只能处理数字，如果要处理文本，就必须先把文本转换为数字才能处理。&lt;br&gt;8bit为1字节，一字节能表示的最大整数为255&lt;br&gt;最先出来的编码表被称之为&lt;code&gt;ASCII&lt;/code&gt;编码，包括大小写英文字母，数字和一些符号，&lt;strong&gt;一个字节就够了&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;但是要处理中文显然一个字节是不够的，&lt;strong&gt;至少需要两个字节&lt;/strong&gt;，而且还不能和ASCII编码冲突，所以，中国制定了&lt;code&gt;GB2312&lt;/code&gt;编码，用来把中文编进去。&lt;/p&gt;
+&lt;p&gt;全世界有上百种语言，日本把日文编到&lt;code&gt;Shift_JIS&lt;/code&gt;里，韩国把韩文编到&lt;code&gt;Euc-kr&lt;/code&gt;里，各国有各国的标准，就会不可避免地出现冲突，结果就是，在多语言混合的文本中，显示出来会有乱码。&lt;/p&gt;
+&lt;p&gt;因此，&lt;code&gt;Unicode&lt;/code&gt;应运而生。Unicode把所有语言都统一到一套编码里，这样就不会再有乱码问题了。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ASCII编码和Unicode编码的区别：ASCII编码是1个字节，而Unicode编码通常是2个字节。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;新的问题又出现了：&lt;br&gt;如果统一成Unicode编码，乱码问题从此消失了。但是，如果你写的文本基本上全部是英文的话，用Unicode编码比ASCII编码需要多一倍的存储空间，在存储和传输上就十分不划算。&lt;br&gt;所以，本着节约的精神，又出现了把Unicode编码转化为“可变长编码”的&lt;code&gt;UTF-8&lt;/code&gt;编码。UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，&lt;code&gt;常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。&lt;/code&gt;如果你要传输的文本包含大量英文字符，用UTF-8编码就能节省空间&lt;/p&gt;
+&lt;p&gt;从上面的表格还可以发现，UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;为什么要编码？&quot;&gt;&lt;a href=&quot;#为什么要编码？&quot; class=&quot;headerlink&quot; title=&quot;为什么要编码？&quot;&gt;&lt;/a&gt;为什么要编码？&lt;/h2&gt;&lt;p&gt;编码是为了兼容字符集之间的通用性， 通常可以编码的地方有：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;系统默认编码&lt;
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://mirrornight.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>git学习笔记</title>
