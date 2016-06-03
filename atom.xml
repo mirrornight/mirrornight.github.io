@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-06-01T13:25:18.209Z</updated>
+  <updated>2016-06-03T06:40:23.189Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -16,11 +16,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>我有什么要做，我需要什么</title>
+    <link href="http://mirrornight.github.io/2016/06/03/%E6%88%91%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%EF%BC%8C%E6%88%91%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88/"/>
+    <id>http://mirrornight.github.io/2016/06/03/我有什么要做，我需要什么/</id>
+    <published>2016-06-03T06:12:01.000Z</published>
+    <updated>2016-06-03T06:40:23.189Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;我要做什么？&quot;&gt;&lt;a href=&quot;#我要做什么？&quot; class=&quot;headerlink&quot; title=&quot;我要做什么？&quot;&gt;&lt;/a&gt;我要做什么？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;写博客来做笔记&lt;/li&gt;
+&lt;li&gt;看书查资料，听音乐，看电影，购物等&lt;/li&gt;
+&lt;li&gt;写python，和其他语言的程序&lt;/li&gt;
+&lt;li&gt;可能会使用到其他方面的软件&lt;/li&gt;
+&lt;li&gt;玩树莓派和单片机&lt;/li&gt;
+&lt;li&gt;在命令行下编辑文件，编译程序&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;我需要什么&quot;&gt;&lt;a href=&quot;#我需要什么&quot; class=&quot;headerlink&quot; title=&quot;我需要什么&quot;&gt;&lt;/a&gt;我需要什么&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;熟悉我的键盘，提高打字速度&lt;/li&gt;
+&lt;li&gt;熟悉IDE的快捷键提高编写速度&lt;/li&gt;
+&lt;li&gt;尽量不用鼠标&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;我要做什么？&quot;&gt;&lt;a href=&quot;#我要做什么？&quot; class=&quot;headerlink&quot; title=&quot;我要做什么？&quot;&gt;&lt;/a&gt;我要做什么？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;写博客来做笔记&lt;/li&gt;
+&lt;li&gt;看书查资料，听音乐，看电影，购物等&lt;/li&gt;
+&lt;li&gt;写pyt
+    
+    </summary>
+    
+      <category term="方向" scheme="http://mirrornight.github.io/categories/%E6%96%B9%E5%90%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>python2中编解码问题</title>
     <link href="http://mirrornight.github.io/2016/06/01/python%E7%BC%96%E8%A7%A3%E7%A0%81%E9%97%AE%E9%A2%98/"/>
     <id>http://mirrornight.github.io/2016/06/01/python编解码问题/</id>
     <published>2016-06-01T07:05:02.000Z</published>
-    <updated>2016-06-01T13:25:18.209Z</updated>
+    <updated>2016-06-02T01:30:15.128Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;还是没搞懂，待修改&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;字符集是什么？&lt;/strong&gt;&lt;br&gt;字符集（Charset）：是一个系统支持的所有抽象字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。&lt;/p&gt;
@@ -86,6 +122,7 @@ s.encode(&amp;#39;gbk&amp;#39;)
 &lt;p&gt;由于Python源代码也是一个文本文件，所以，当你的源代码中包含中文的时候，在保存源代码时，就需要务必指定保存为UTF-8编码。当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行：&lt;br&gt;&lt;code&gt;#!/usr/bin/env python&lt;/code&gt;&lt;br&gt;&lt;code&gt;# -*- coding: utf-8 -*-&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;相关博客：&lt;br&gt;&lt;a href=&quot;http://liangguanhui.iteye.com/blog/554116&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;五分钟Unicode简单入门&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符编码笔记：ASCII，Unicode和UTF-8&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;廖雪峰的官方网站:字符串和编码&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符集和字符编码（Charset &amp;amp; Encoding）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;个人觉得说得比较清楚的一篇博客：&lt;br&gt;&lt;a href=&quot;http://www.crifan.com/files/doc/docbook/char_encoding/release/html/char_encoding.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符编码详解&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">

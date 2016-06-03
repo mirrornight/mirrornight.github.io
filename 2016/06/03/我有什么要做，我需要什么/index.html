@@ -5,23 +5,56 @@
   <meta name="google-site-verification" content="gd-rl6AdCOIJvlnB6pNS6geGplGD5h0FqdAYeDEjuw4" />
   <meta charset="UTF-8">
   
-    <title>git学习笔记 | mirror night的博客</title>
+    <title>我有什么要做，我需要什么 | mirror night的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mirror night">
     
 
     
-    <meta name="description" content="关于git命令和git shell介绍">
+    <meta name="description" content="我要做什么？
+写博客来做笔记
+看书查资料，听音乐，看电影，购物等
+写python，和其他语言的程序
+可能会使用到其他方面的软件
+玩树莓派和单片机
+在命令行下编辑文件，编译程序
+
+我需要什么
+熟悉我的键盘，提高打字速度
+熟悉IDE的快捷键提高编写速度
+尽量不用鼠标">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习笔记">
-<meta property="og:url" content="http://mirrornight.github.io/2016/05/31/git学习笔记/index.html">
+<meta property="og:title" content="我有什么要做，我需要什么">
+<meta property="og:url" content="http://mirrornight.github.io/2016/06/03/我有什么要做，我需要什么/index.html">
 <meta property="og:site_name" content="mirror night的博客">
-<meta property="og:description" content="关于git命令和git shell介绍">
-<meta property="og:updated_time" content="2016-06-01T02:34:18.677Z">
+<meta property="og:description" content="我要做什么？
+写博客来做笔记
+看书查资料，听音乐，看电影，购物等
+写python，和其他语言的程序
+可能会使用到其他方面的软件
+玩树莓派和单片机
+在命令行下编辑文件，编译程序
+
+我需要什么
+熟悉我的键盘，提高打字速度
+熟悉IDE的快捷键提高编写速度
+尽量不用鼠标">
+<meta property="og:updated_time" content="2016-06-03T06:40:23.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习笔记">
-<meta name="twitter:description" content="关于git命令和git shell介绍">
+<meta name="twitter:title" content="我有什么要做，我需要什么">
+<meta name="twitter:description" content="我要做什么？
+写博客来做笔记
+看书查资料，听音乐，看电影，购物等
+写python，和其他语言的程序
+可能会使用到其他方面的软件
+玩树莓派和单片机
+在命令行下编辑文件，编译程序
+
+我需要什么
+熟悉我的键盘，提高打字速度
+熟悉IDE的快捷键提高编写速度
+尽量不用鼠标">
 
     
     <link rel="alternative" href="/atom.xml" title="mirror night的博客" type="application/atom+xml">
@@ -81,14 +114,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/31/git学习笔记/" title="git学习笔记" itemprop="url">git学习笔记</a>
+      <a href="/2016/06/03/我有什么要做，我需要什么/" title="我有什么要做，我需要什么" itemprop="url">我有什么要做，我需要什么</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-31T07:52:53.000Z" itemprop="datePublished"> 发表于 2016-05-31</time>
+    <time datetime="2016-06-03T06:12:01.000Z" itemprop="datePublished"> 发表于 2016-06-03</time>
     
   </p>
 </header>
@@ -97,67 +130,23 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#我要做什么？"><span class="toc-number">1.</span> <span class="toc-text">我要做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我需要什么"><span class="toc-number">2.</span> <span class="toc-text">我需要什么</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="不同颜色的分支所代表的含义"><a href="#不同颜色的分支所代表的含义" class="headerlink" title="不同颜色的分支所代表的含义"></a>不同颜色的分支所代表的含义</h2><ul>
-<li>青色：代表本地储存库和远端储存库是同步状态</li>
-<li>红色：本地储存库的版本比远端储存库落后<br><code>git pull把远端储存库的变更抓回来更新本地储存库</code>                  </li>
-<li>黄色：目前本地储存库有些版本超前于远端储存库，而有些落后<br><code>先 git pull 在 git push 把本地的版本推送上去</code></li>
-<li>绿色：代表本地储存库超前于远端储存库<br><code>git push</code></li>
-</ul>
-<h2 id="工作目录档案状态符号与颜色所代表的含义"><a href="#工作目录档案状态符号与颜色所代表的含义" class="headerlink" title="工作目录档案状态符号与颜色所代表的含义"></a>工作目录档案状态符号与颜色所代表的含义</h2><ul>
-<li><code>+</code> = 有 n 个新增档案</li>
-<li><code>~</code> = 有 n 个档案被更新</li>
-<li><code>-</code> = 有 n 个档案被删除</li>
-<li><code>!</code> = 有 n 个档案在合并时发生冲突</li>
-<li>暗红色：代表这些档案处于untracked 或not staged状态</li>
-<li>暗绿色：代表这些档案处于staged状态</li>
-</ul>
-<h2 id="git-shell命令"><a href="#git-shell命令" class="headerlink" title="git shell命令"></a>git shell命令</h2><pre><code>usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
-           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
-           &lt;command&gt; [&lt;args&gt;]
-
-These are common Git commands used in various situations:
-
-start a working area (see also: git help tutorial)
-   clone      Clone a repository into a new directory
-   init       Create an empty Git repository or reinitialize an existing one
-
-work on the current change (see also: git help everyday)
-   add        Add file contents to the index
-   mv         Move or rename a file, a directory, or a symlink
-   reset      Reset current HEAD to the specified state
-   rm         Remove files from the working tree and from the index
-
-examine the history and state (see also: git help revisions)
-   bisect     Use binary search to find the commit that introduced a bug
-   grep       Print lines matching a pattern
-   log        Show commit logs
-   show       Show various types of objects
-   status     Show the working tree status
-
-grow, mark and tweak your common history
-   branch     List, create, or delete branches
-   checkout   Switch branches or restore working tree files
-   commit     Record changes to the repository
-   diff       Show changes between commits, commit and working tree, etc
-   merge      Join two or more development histories together
-   rebase     Reapply commits on top of another base tip
-   tag        Create, list, delete or verify a tag object signed with GPG
-
-collaborate (see also: git help workflows)
-   fetch      Download objects and refs from another repository
-   pull       Fetch from and integrate with another repository or a local branch
-   push       Update remote refs along with associated objects
-
-&#39;git help -a&#39; and &#39;git help -g&#39; list available subcommands and some
-concept guides. See &#39;git help &lt;command&gt;&#39; or &#39;git help &lt;concept&gt;&#39;
-to read about a specific subcommand or concept.
-</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://blog.miniasp.com/post/2014/01/05/The-color-meaning-in-Git-Shell-prompt.aspx" target="_blank" rel="external">GitHub for Windows 內建 Git Shell 執行時顏色所代表的意義 </a></p>
+		<h2 id="我要做什么？"><a href="#我要做什么？" class="headerlink" title="我要做什么？"></a>我要做什么？</h2><ol>
+<li>写博客来做笔记</li>
+<li>看书查资料，听音乐，看电影，购物等</li>
+<li>写python，和其他语言的程序</li>
+<li>可能会使用到其他方面的软件</li>
+<li>玩树莓派和单片机</li>
+<li>在命令行下编辑文件，编译程序</li>
+</ol>
+<h2 id="我需要什么"><a href="#我需要什么" class="headerlink" title="我需要什么"></a>我需要什么</h2><ol>
+<li>熟悉我的键盘，提高打字速度</li>
+<li>熟悉IDE的快捷键提高编写速度</li>
+<li>尽量不用鼠标</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -165,14 +154,9 @@ to read about a specific subcommand or concept.
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/命令参考手册/">命令参考手册</a>
+  <a class="article-category-link" href="/categories/方向/">方向</a>
 </div>
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/git/">git</a>
-  </div>
 
 </div>
 
@@ -180,7 +164,7 @@ to read about a specific subcommand or concept.
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mirrornight.github.io/2016/05/31/git学习笔记/" data-title="git学习笔记 | mirror night的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mirrornight.github.io/2016/06/03/我有什么要做，我需要什么/" data-title="我有什么要做，我需要什么 | mirror night的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -193,19 +177,11 @@ to read about a specific subcommand or concept.
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/06/01/python编解码问题/" title="python2中编解码问题">
-  <strong>上一篇：</strong><br/>
-  <span>
-  python2中编解码问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/30/pip命令参考/"  title="pip命令参考">
+<a href="/2016/06/01/python编解码问题/"  title="python2中编解码问题">
  <strong>下一篇：</strong><br/> 
- <span>pip命令参考
+ <span>python2中编解码问题
 </span>
 </a>
 </div>
@@ -220,7 +196,7 @@ to read about a specific subcommand or concept.
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#我要做什么？"><span class="toc-number">1.</span> <span class="toc-text">我要做什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我需要什么"><span class="toc-number">2.</span> <span class="toc-text">我需要什么</span></a></li></ol>
  
   </div>
 
