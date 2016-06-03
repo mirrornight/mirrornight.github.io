@@ -56,7 +56,7 @@
     <link href="http://mirrornight.github.io/2016/06/01/python%E7%BC%96%E8%A7%A3%E7%A0%81%E9%97%AE%E9%A2%98/"/>
     <id>http://mirrornight.github.io/2016/06/01/python编解码问题/</id>
     <published>2016-06-01T07:05:02.000Z</published>
-    <updated>2016-06-02T01:30:15.128Z</updated>
+    <updated>2016-06-03T12:59:29.939Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;还是没搞懂，待修改&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;字符集是什么？&lt;/strong&gt;&lt;br&gt;字符集（Charset）：是一个系统支持的所有抽象字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。&lt;/p&gt;
@@ -122,7 +122,7 @@ s.encode(&amp;#39;gbk&amp;#39;)
 &lt;p&gt;由于Python源代码也是一个文本文件，所以，当你的源代码中包含中文的时候，在保存源代码时，就需要务必指定保存为UTF-8编码。当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行：&lt;br&gt;&lt;code&gt;#!/usr/bin/env python&lt;/code&gt;&lt;br&gt;&lt;code&gt;# -*- coding: utf-8 -*-&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;相关博客：&lt;br&gt;&lt;a href=&quot;http://liangguanhui.iteye.com/blog/554116&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;五分钟Unicode简单入门&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符编码笔记：ASCII，Unicode和UTF-8&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;廖雪峰的官方网站:字符串和编码&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符集和字符编码（Charset &amp;amp; Encoding）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;个人觉得说得比较清楚的一篇博客：&lt;br&gt;&lt;a href=&quot;http://www.crifan.com/files/doc/docbook/char_encoding/release/html/char_encoding.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符编码详解&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;个人觉得说得比较清楚的一些博客：&lt;br&gt;&lt;a href=&quot;http://www.crifan.com/files/doc/docbook/char_encoding/release/html/char_encoding.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字符编码详解&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.crifan.com/python_head_meaning_for_usr_bin_python_coding_utf-8/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;关于Python脚本开头两行的：#!/usr/bin/python和# -&lt;em&gt;- coding: utf-8 -&lt;/em&gt;-的作用 – 指定文件编码类型&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.crifan.com/python_already_got_correct_encoding_string_but_seems_print_messy_code/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Python中实际上已经得到了正确的Unicode或某种编码的字符，但是看起来或打印出来却是乱码&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.crifan.com/files/doc/docbook/python_topic_str_encoding/release/html/python_topic_str_encoding.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Python专题教程：字符串和字符编码&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
