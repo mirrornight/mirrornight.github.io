@@ -82,6 +82,65 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/06/06/sumline常用命令/" title="sumline常用命令" itemprop="url">sumline常用命令</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-06T06:14:17.000Z" itemprop="datePublished"> 发表于 2016-06-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/命令参考手册/">命令参考手册</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/sumline-text/">sumline text</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/06/05/vim命令/" title="vim命令" itemprop="url">vim命令</a>
   </h1>
   <p class="article-author">By
@@ -106,8 +165,29 @@ yy -&gt; 复制当前行
 </code></pre><p><strong>undo/redo</strong></p>
 <pre><code>u -&gt; undo                   (撤销)
 &lt;C-r&gt; -&gt; redo               (恢复)
+</code></pre><h2 id="2016-6-6"><a href="#2016-6-6" class="headerlink" title="2016/6/6"></a>2016/6/6</h2><p><strong>打开/保存/退出</strong></p>
+<pre><code>:e &lt;path/to/file&gt; -&gt; 打开一个文件
+:w -&gt; 保存
+:saveas &lt;path/to/file&gt; -&gt; 另存为
+ZZ -&gt; 保存并退出
+:q! -&gt; 退出不保存
+vim 支持打开多个文件可用:bn 和 :bp 来切换下一个或上一个文件
+</code></pre><p><strong>重复</strong></p>
+<pre><code>. -&gt; 可以重复上一次的命令
+N&lt;command&gt; -&gt; 重复某个命令N次(N为数字)
+</code></pre><p><strong>光标移动</strong></p>
+<pre><code>:N -&gt; 到第N行
+gg -&gt; 到第一行
+G -&gt; 到最后一行
+按单词移动:
+    1. w -&gt; 到下一个单词的开头
+    2. e -&gt; 到下一个单词的结尾
+&gt; 如果你认为单词是由默认方式，那么就用小写的e和w。默认上来说，一个单词由字母，数字和下划线组成
+&gt; 如果你认为单词是由blank字符分隔符，那么你需要使用大写的E和W
 </code></pre><h2 id="sublime-text下使用vim"><a href="#sublime-text下使用vim" class="headerlink" title="sublime text下使用vim"></a>sublime text下使用vim</h2><p><a href="http://feliving.github.io/Sublime-Text-3-Documentation/" target="_blank" rel="external">sublime text3 文档</a></p>
-
+<p><strong>在sublime下vim中不能用的命令</strong></p>
+<pre><code>&lt;C-r&gt; -&gt; redo               (恢复)
+</code></pre>
         
         
         <p class="article-more-link">
@@ -694,7 +774,7 @@ atx形式
 		  
 		
 		  
-			<li><a href="/categories/命令参考手册/" title="命令参考手册">命令参考手册<sup>3</sup></a></li>
+			<li><a href="/categories/命令参考手册/" title="命令参考手册">命令参考手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -727,6 +807,10 @@ atx形式
 			
 		
 			
+				<li><a href="/tags/sumline-text/" title="sumline text">sumline text<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
 			
 		
@@ -738,7 +822,7 @@ atx形式
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
+       <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/sumline-text/" style="font-size: 10px;">sumline text</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
     </div>
   </div>
 
