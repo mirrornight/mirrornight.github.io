@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-06-06T08:11:16.229Z</updated>
+  <updated>2016-06-06T09:33:44.824Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -14,6 +14,93 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vimium命令</title>
+    <link href="http://mirrornight.github.io/2016/06/06/vimium%E5%91%BD%E4%BB%A4/"/>
+    <id>http://mirrornight.github.io/2016/06/06/vimium命令/</id>
+    <published>2016-06-06T09:17:26.000Z</published>
+    <updated>2016-06-06T09:33:44.824Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Vimium-The-Hacker’s-Browser&quot;&gt;&lt;a href=&quot;#Vimium-The-Hacker’s-Browser&quot; class=&quot;headerlink&quot; title=&quot;Vimium - The Hacker’s Browser&quot;&gt;&lt;/a&gt;Vimium - The Hacker’s Browser&lt;/h1&gt;&lt;h2 id=&quot;Keyboard-Bindings&quot;&gt;&lt;a href=&quot;#Keyboard-Bindings&quot; class=&quot;headerlink&quot; title=&quot;Keyboard Bindings&quot;&gt;&lt;/a&gt;Keyboard Bindings&lt;/h2&gt;&lt;p&gt;Modifier keys are specified as &lt;code&gt;&amp;lt;c-x&amp;gt;&lt;/code&gt;, &lt;code&gt;&amp;lt;m-x&amp;gt;&lt;/code&gt;, and &lt;code&gt;&amp;lt;a-x&amp;gt;&lt;/code&gt; for ctrl+x, meta+x, and alt+x&lt;br&gt;respectively. See the next section for how to customize these bindings.&lt;/p&gt;
+&lt;p&gt;Once you have Vimium installed, you can see this list of key bindings at any time by typing &lt;code&gt;?&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Navigating the current page:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?       show the help dialog for a list of all available keys
+h       scroll left
+j       scroll down
+k       scroll up
+l       scroll right
+gg      scroll to top of the page
+G       scroll to bottom of the page
+d       scroll down half a page
+u       scroll up half a page
+f       open a link in the current tab
+F       open a link in a new tab
+r       reload
+gs      view source
+i       enter insert mode -- all commands will be ignored until you hit Esc to exit
+yy      copy the current url to the clipboard
+yf      copy a link url to the clipboard
+gf      cycle forward to the next frame
+gF      focus the main/top frame
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Navigating to new pages:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;o       Open URL, bookmark, or history entry
+O       Open URL, bookmark, history entry in a new tab
+b       Open bookmark
+B       Open bookmark in a new tab
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Using find:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/       enter find mode
+          -- type your search query and hit enter to search, or Esc to cancel
+n       cycle forward to the next find match
+N       cycle backward to the previous find match
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;For advanced usage, see &lt;a href=&quot;https://github.com/philc/vimium/wiki/Find-Mode&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;regular expressions&lt;/a&gt; on the wiki.&lt;/p&gt;
+&lt;p&gt;Navigating your history:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;H       go back in history
+L       go forward in history
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Manipulating tabs:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;J, gT   go one tab left
+K, gt   go one tab right
+g0      go to the first tab
+g$      go to the last tab
+^       visit the previously-visited tab
+t       create tab
+yt      duplicate current tab
+x       close current tab
+X       restore closed tab (i.e. unwind the &amp;#39;x&amp;#39; command)
+T       search through your open tabs
+&amp;lt;a-p&amp;gt;   pin/unpin current tab
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Using marks:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ma, mA  set local mark &amp;quot;a&amp;quot; (global mark &amp;quot;A&amp;quot;)
+`a, `A  jump to local mark &amp;quot;a&amp;quot; (global mark &amp;quot;A&amp;quot;)
+``      jump back to the position before the previous jump
+          -- that is, before the previous gg, G, n, N, / or `a
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Additional advanced browsing commands:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;]], [[  Follow the link labeled &amp;#39;next&amp;#39; or &amp;#39;&amp;gt;&amp;#39; (&amp;#39;previous&amp;#39; or &amp;#39;&amp;lt;&amp;#39;)
+          - helpful for browsing paginated sites
+&amp;lt;a-f&amp;gt;   open multiple links in a new tab
+gi      focus the first (or n-th) text input box on the page
+gu      go up one level in the URL hierarchy
+gU      go up to root of the URL hierarchy
+zH      scroll all the way left
+zL      scroll all the way right
+v       enter visual mode; use p/P to paste-and-go, use y to yank
+V       enter visual line mode
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Vimium supports command repetition so, for example, hitting &lt;code&gt;5t&lt;/code&gt; will open 5 tabs in rapid succession. &lt;code&gt;&amp;lt;Esc&amp;gt;&lt;/code&gt; (or&lt;br&gt;&lt;code&gt;&amp;lt;c-[&amp;gt;&lt;/code&gt;) will clear any partial commands in the queue and will also exit insert and find modes.&lt;/p&gt;
+&lt;p&gt;There are some advanced commands which aren’t documented here; refer to the help dialog (type &lt;code&gt;?&lt;/code&gt;) for a full&lt;br&gt;list.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Vimium-The-Hacker’s-Browser&quot;&gt;&lt;a href=&quot;#Vimium-The-Hacker’s-Browser&quot; class=&quot;headerlink&quot; title=&quot;Vimium - The Hacker’s Browser&quot;&gt;&lt;/a&gt;Vim
+    
+    </summary>
+    
+      <category term="命令参考手册" scheme="http://mirrornight.github.io/categories/%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/"/>
+    
+    
+      <category term="vimium" scheme="http://mirrornight.github.io/tags/vimium/"/>
+    
+  </entry>
   
   <entry>
     <title>sumline常用命令</title>
@@ -96,7 +183,7 @@ G -&amp;gt; 到最后一行
     <link href="http://mirrornight.github.io/2016/06/03/%E6%88%91%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%EF%BC%8C%E6%88%91%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88/"/>
     <id>http://mirrornight.github.io/2016/06/03/我有什么要做，我需要什么/</id>
     <published>2016-06-03T06:12:01.000Z</published>
-    <updated>2016-06-04T11:57:22.957Z</updated>
+    <updated>2016-06-06T09:13:49.421Z</updated>
     
     <content type="html">&lt;h2 id=&quot;搭建一个高效的开发环境&quot;&gt;&lt;a href=&quot;#搭建一个高效的开发环境&quot; class=&quot;headerlink&quot; title=&quot;搭建一个高效的开发环境&quot;&gt;&lt;/a&gt;搭建一个高效的开发环境&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;熟练使用pycharm的各项快捷键，编写python程序&lt;/li&gt;
@@ -106,6 +193,7 @@ G -&amp;gt; 到最后一行
 &lt;li&gt;熟练window和linux下的各个常用命令&lt;/li&gt;
 &lt;li&gt;熟练sublime的快捷键&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h2 id=&quot;环境配置&quot;&gt;&lt;a href=&quot;#环境配置&quot; class=&quot;headerlink&quot; title=&quot;环境配置&quot;&gt;&lt;/a&gt;环境配置&lt;/h2&gt;&lt;p&gt;安装谷歌插件vimium&lt;/p&gt;
 </content>
     
     <summary type="html">

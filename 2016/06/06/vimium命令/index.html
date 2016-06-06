@@ -5,23 +5,23 @@
   <meta name="google-site-verification" content="gd-rl6AdCOIJvlnB6pNS6geGplGD5h0FqdAYeDEjuw4" />
   <meta charset="UTF-8">
   
-    <title>sumline常用命令 | mirror night的博客</title>
+    <title>vimium命令 | mirror night的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mirror night">
     
 
     
-    <meta name="description">
+    <meta name="description" content="Vimium - The Hacker’s BrowserKeyboard BindingsModifier keys are specified as &amp;lt;c-x&amp;gt;, &amp;lt;m-x&amp;gt;, and &amp;lt;a-x&amp;gt; for ctrl+x, meta+x, and alt+xrespectively. See the next section for how to custom">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sumline常用命令">
-<meta property="og:url" content="http://mirrornight.github.io/2016/06/06/sumline常用命令/index.html">
+<meta property="og:title" content="vimium命令">
+<meta property="og:url" content="http://mirrornight.github.io/2016/06/06/vimium命令/index.html">
 <meta property="og:site_name" content="mirror night的博客">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-06-06T08:11:16.229Z">
+<meta property="og:description" content="Vimium - The Hacker’s BrowserKeyboard BindingsModifier keys are specified as &amp;lt;c-x&amp;gt;, &amp;lt;m-x&amp;gt;, and &amp;lt;a-x&amp;gt; for ctrl+x, meta+x, and alt+xrespectively. See the next section for how to custom">
+<meta property="og:updated_time" content="2016-06-06T09:33:44.824Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sumline常用命令">
-<meta name="twitter:description">
+<meta name="twitter:title" content="vimium命令">
+<meta name="twitter:description" content="Vimium - The Hacker’s BrowserKeyboard BindingsModifier keys are specified as &amp;lt;c-x&amp;gt;, &amp;lt;m-x&amp;gt;, and &amp;lt;a-x&amp;gt; for ctrl+x, meta+x, and alt+xrespectively. See the next section for how to custom">
 
     
     <link rel="alternative" href="/atom.xml" title="mirror night的博客" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/06/sumline常用命令/" title="sumline常用命令" itemprop="url">sumline常用命令</a>
+      <a href="/2016/06/06/vimium命令/" title="vimium命令" itemprop="url">vimium命令</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-06T06:14:17.000Z" itemprop="datePublished"> 发表于 2016-06-06</time>
+    <time datetime="2016-06-06T09:17:26.000Z" itemprop="datePublished"> 发表于 2016-06-06</time>
     
   </p>
 </header>
@@ -97,11 +97,76 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vimium-The-Hacker’s-Browser"><span class="toc-number">1.</span> <span class="toc-text">Vimium - The Hacker’s Browser</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyboard-Bindings"><span class="toc-number">1.1.</span> <span class="toc-text">Keyboard Bindings</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		  
+		<h1 id="Vimium-The-Hacker’s-Browser"><a href="#Vimium-The-Hacker’s-Browser" class="headerlink" title="Vimium - The Hacker’s Browser"></a>Vimium - The Hacker’s Browser</h1><h2 id="Keyboard-Bindings"><a href="#Keyboard-Bindings" class="headerlink" title="Keyboard Bindings"></a>Keyboard Bindings</h2><p>Modifier keys are specified as <code>&lt;c-x&gt;</code>, <code>&lt;m-x&gt;</code>, and <code>&lt;a-x&gt;</code> for ctrl+x, meta+x, and alt+x<br>respectively. See the next section for how to customize these bindings.</p>
+<p>Once you have Vimium installed, you can see this list of key bindings at any time by typing <code>?</code>.</p>
+<p>Navigating the current page:</p>
+<pre><code>?       show the help dialog for a list of all available keys
+h       scroll left
+j       scroll down
+k       scroll up
+l       scroll right
+gg      scroll to top of the page
+G       scroll to bottom of the page
+d       scroll down half a page
+u       scroll up half a page
+f       open a link in the current tab
+F       open a link in a new tab
+r       reload
+gs      view source
+i       enter insert mode -- all commands will be ignored until you hit Esc to exit
+yy      copy the current url to the clipboard
+yf      copy a link url to the clipboard
+gf      cycle forward to the next frame
+gF      focus the main/top frame
+</code></pre><p>Navigating to new pages:</p>
+<pre><code>o       Open URL, bookmark, or history entry
+O       Open URL, bookmark, history entry in a new tab
+b       Open bookmark
+B       Open bookmark in a new tab
+</code></pre><p>Using find:</p>
+<pre><code>/       enter find mode
+          -- type your search query and hit enter to search, or Esc to cancel
+n       cycle forward to the next find match
+N       cycle backward to the previous find match
+</code></pre><p>For advanced usage, see <a href="https://github.com/philc/vimium/wiki/Find-Mode" target="_blank" rel="external">regular expressions</a> on the wiki.</p>
+<p>Navigating your history:</p>
+<pre><code>H       go back in history
+L       go forward in history
+</code></pre><p>Manipulating tabs:</p>
+<pre><code>J, gT   go one tab left
+K, gt   go one tab right
+g0      go to the first tab
+g$      go to the last tab
+^       visit the previously-visited tab
+t       create tab
+yt      duplicate current tab
+x       close current tab
+X       restore closed tab (i.e. unwind the &#39;x&#39; command)
+T       search through your open tabs
+&lt;a-p&gt;   pin/unpin current tab
+</code></pre><p>Using marks:</p>
+<pre><code>ma, mA  set local mark &quot;a&quot; (global mark &quot;A&quot;)
+`a, `A  jump to local mark &quot;a&quot; (global mark &quot;A&quot;)
+``      jump back to the position before the previous jump
+          -- that is, before the previous gg, G, n, N, / or `a
+</code></pre><p>Additional advanced browsing commands:</p>
+<pre><code>]], [[  Follow the link labeled &#39;next&#39; or &#39;&gt;&#39; (&#39;previous&#39; or &#39;&lt;&#39;)
+          - helpful for browsing paginated sites
+&lt;a-f&gt;   open multiple links in a new tab
+gi      focus the first (or n-th) text input box on the page
+gu      go up one level in the URL hierarchy
+gU      go up to root of the URL hierarchy
+zH      scroll all the way left
+zL      scroll all the way right
+v       enter visual mode; use p/P to paste-and-go, use y to yank
+V       enter visual line mode
+</code></pre><p>Vimium supports command repetition so, for example, hitting <code>5t</code> will open 5 tabs in rapid succession. <code>&lt;Esc&gt;</code> (or<br><code>&lt;c-[&gt;</code>) will clear any partial commands in the queue and will also exit insert and find modes.</p>
+<p>There are some advanced commands which aren’t documented here; refer to the help dialog (type <code>?</code>) for a full<br>list.</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -114,7 +179,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/sumline-text/">sumline text</a>
+  <span></span> <a href="/tags/vimium/">vimium</a>
   </div>
 
 </div>
@@ -123,7 +188,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mirrornight.github.io/2016/06/06/sumline常用命令/" data-title="sumline常用命令 | mirror night的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mirrornight.github.io/2016/06/06/vimium命令/" data-title="vimium命令 | mirror night的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -136,19 +201,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/06/06/vimium命令/" title="vimium命令">
-  <strong>上一篇：</strong><br/>
-  <span>
-  vimium命令</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/06/05/vim命令/"  title="vim命令">
+<a href="/2016/06/06/sumline常用命令/"  title="sumline常用命令">
  <strong>下一篇：</strong><br/> 
- <span>vim命令
+ <span>sumline常用命令
 </span>
 </a>
 </div>
@@ -163,7 +220,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vimium-The-Hacker’s-Browser"><span class="toc-number">1.</span> <span class="toc-text">Vimium - The Hacker’s Browser</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyboard-Bindings"><span class="toc-number">1.1.</span> <span class="toc-text">Keyboard Bindings</span></a></li></ol></li></ol>
  
   </div>
 

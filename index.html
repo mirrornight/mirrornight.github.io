@@ -82,6 +82,130 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/06/06/vimium命令/" title="vimium命令" itemprop="url">vimium命令</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-06T09:17:26.000Z" itemprop="datePublished"> 发表于 2016-06-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Vimium-The-Hacker’s-Browser"><a href="#Vimium-The-Hacker’s-Browser" class="headerlink" title="Vimium - The Hacker’s Browser"></a>Vimium - The Hacker’s Browser</h1><h2 id="Keyboard-Bindings"><a href="#Keyboard-Bindings" class="headerlink" title="Keyboard Bindings"></a>Keyboard Bindings</h2><p>Modifier keys are specified as <code>&lt;c-x&gt;</code>, <code>&lt;m-x&gt;</code>, and <code>&lt;a-x&gt;</code> for ctrl+x, meta+x, and alt+x<br>respectively. See the next section for how to customize these bindings.</p>
+<p>Once you have Vimium installed, you can see this list of key bindings at any time by typing <code>?</code>.</p>
+<p>Navigating the current page:</p>
+<pre><code>?       show the help dialog for a list of all available keys
+h       scroll left
+j       scroll down
+k       scroll up
+l       scroll right
+gg      scroll to top of the page
+G       scroll to bottom of the page
+d       scroll down half a page
+u       scroll up half a page
+f       open a link in the current tab
+F       open a link in a new tab
+r       reload
+gs      view source
+i       enter insert mode -- all commands will be ignored until you hit Esc to exit
+yy      copy the current url to the clipboard
+yf      copy a link url to the clipboard
+gf      cycle forward to the next frame
+gF      focus the main/top frame
+</code></pre><p>Navigating to new pages:</p>
+<pre><code>o       Open URL, bookmark, or history entry
+O       Open URL, bookmark, history entry in a new tab
+b       Open bookmark
+B       Open bookmark in a new tab
+</code></pre><p>Using find:</p>
+<pre><code>/       enter find mode
+          -- type your search query and hit enter to search, or Esc to cancel
+n       cycle forward to the next find match
+N       cycle backward to the previous find match
+</code></pre><p>For advanced usage, see <a href="https://github.com/philc/vimium/wiki/Find-Mode" target="_blank" rel="external">regular expressions</a> on the wiki.</p>
+<p>Navigating your history:</p>
+<pre><code>H       go back in history
+L       go forward in history
+</code></pre><p>Manipulating tabs:</p>
+<pre><code>J, gT   go one tab left
+K, gt   go one tab right
+g0      go to the first tab
+g$      go to the last tab
+^       visit the previously-visited tab
+t       create tab
+yt      duplicate current tab
+x       close current tab
+X       restore closed tab (i.e. unwind the &#39;x&#39; command)
+T       search through your open tabs
+&lt;a-p&gt;   pin/unpin current tab
+</code></pre><p>Using marks:</p>
+<pre><code>ma, mA  set local mark &quot;a&quot; (global mark &quot;A&quot;)
+`a, `A  jump to local mark &quot;a&quot; (global mark &quot;A&quot;)
+``      jump back to the position before the previous jump
+          -- that is, before the previous gg, G, n, N, / or `a
+</code></pre><p>Additional advanced browsing commands:</p>
+<pre><code>]], [[  Follow the link labeled &#39;next&#39; or &#39;&gt;&#39; (&#39;previous&#39; or &#39;&lt;&#39;)
+          - helpful for browsing paginated sites
+&lt;a-f&gt;   open multiple links in a new tab
+gi      focus the first (or n-th) text input box on the page
+gu      go up one level in the URL hierarchy
+gU      go up to root of the URL hierarchy
+zH      scroll all the way left
+zL      scroll all the way right
+v       enter visual mode; use p/P to paste-and-go, use y to yank
+V       enter visual line mode
+</code></pre><p>Vimium supports command repetition so, for example, hitting <code>5t</code> will open 5 tabs in rapid succession. <code>&lt;Esc&gt;</code> (or<br><code>&lt;c-[&gt;</code>) will clear any partial commands in the queue and will also exit insert and find modes.</p>
+<p>There are some advanced commands which aren’t documented here; refer to the help dialog (type <code>?</code>) for a full<br>list.</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/命令参考手册/">命令参考手册</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/vimium/">vimium</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/06/06/sumline常用命令/" title="sumline常用命令" itemprop="url">sumline常用命令</a>
   </h1>
   <p class="article-author">By
@@ -254,6 +378,7 @@ G -&gt; 到最后一行
 <li>熟练window和linux下的各个常用命令</li>
 <li>熟练sublime的快捷键</li>
 </ol>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>安装谷歌插件vimium</p>
 
         
         
@@ -774,7 +899,7 @@ atx形式
 		  
 		
 		  
-			<li><a href="/categories/命令参考手册/" title="命令参考手册">命令参考手册<sup>4</sup></a></li>
+			<li><a href="/categories/命令参考手册/" title="命令参考手册">命令参考手册<sup>5</sup></a></li>
 		  
 		
 		  
@@ -795,7 +920,7 @@ atx形式
 			
 		
 			
-				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 			
@@ -803,11 +928,15 @@ atx形式
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/sumline-text/" title="sumline text">sumline text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vimium/" title="vimium">vimium<sup>1</sup></a></li>
 			
 		
 			
@@ -822,7 +951,7 @@ atx形式
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/sumline-text/" style="font-size: 10px;">sumline text</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
+       <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/sumline-text/" style="font-size: 10px;">sumline text</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimium/" style="font-size: 10px;">vimium</a>
     </div>
   </div>
 
