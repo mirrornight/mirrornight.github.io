@@ -98,20 +98,20 @@
         <h1 id="Vimium-The-Hacker’s-Browser"><a href="#Vimium-The-Hacker’s-Browser" class="headerlink" title="Vimium - The Hacker’s Browser"></a>Vimium - The Hacker’s Browser</h1><h2 id="Keyboard-Bindings"><a href="#Keyboard-Bindings" class="headerlink" title="Keyboard Bindings"></a>Keyboard Bindings</h2><p>Modifier keys are specified as <code>&lt;c-x&gt;</code>, <code>&lt;m-x&gt;</code>, and <code>&lt;a-x&gt;</code> for ctrl+x, meta+x, and alt+x<br>respectively. See the next section for how to customize these bindings.</p>
 <p>Once you have Vimium installed, you can see this list of key bindings at any time by typing <code>?</code>.</p>
 <p>Navigating the current page:</p>
-<pre><code>?       show the help dialog for a list of all available keys
-h       scroll left
-j       scroll down
-k       scroll up
-l       scroll right
-gg      scroll to top of the page
-G       scroll to bottom of the page
-d       scroll down half a page
-u       scroll up half a page
-f       open a link in the current tab
-F       open a link in a new tab
-r       reload
-gs      view source
-i       enter insert mode -- all commands will be ignored until you hit Esc to exit
+<pre><code>?       show the help dialog for a list of all available keys                         查看帮助文档
+h       scroll left                                                                   左移
+j       scroll down                                                                   下移
+k       scroll up                                                                     上移
+l       scroll right    ------------------------------------------------------------- 右移
+gg      scroll to top of the page                                                     返回顶部
+G       scroll to bottom of the page                                                  返回底部
+d       scroll down half a page                                                       向下翻滚半个页面
+u       scroll up half a page                                                         向上翻滚半个页面
+f       open a link in the current tab  --------------------------------------------- 显示页面上的链接，打开链接在此页面
+F       open a link in a new tab                                                      显示页面上的链接，打开链接在新的页面                                      
+r       reload                                                                        刷新
+gs      view source                                                                   显示源文件
+i       enter insert mode -- all commands will be ignored until you hit Esc to exit   
 yy      copy the current url to the clipboard
 yf      copy a link url to the clipboard
 gf      cycle forward to the next frame
@@ -308,6 +308,35 @@ G -&gt; 到最后一行
     2. e -&gt; 到下一个单词的结尾
 &gt; 如果你认为单词是由默认方式，那么就用小写的e和w。默认上来说，一个单词由字母，数字和下划线组成
 &gt; 如果你认为单词是由blank字符分隔符，那么你需要使用大写的E和W
+
+其他几个光标的移动
+· %: 匹配光标移动，包括(,[,{.  (需要把光标移到括号上)
+· #和*: 匹配光标当前所在的单词，移动光标到下一个（或上一个）匹配的单词*(*是下一个，#是上一个)
+</code></pre><h2 id="2016-6-8"><a href="#2016-6-8" class="headerlink" title="2016/6/8"></a>2016/6/8</h2><pre><code>其他几个光标的移动
+· %: 匹配光标移动，包括(,[,{.  (需要把光标移到括号上)
+· #和\*: 匹配光标当前所在的单词，移动光标到下一个（或上一个）匹配的单词\*(*是下一个，#是上一个)
+
+12ihello[ESC] 写下12个hello
+
+组合
+&lt;start position&gt;&lt;command&gt;&lt;position&gt;
+例如
+`0y$`
+· 0 -&gt; 先到行头
+· y -&gt; 从这里开始拷贝
+· $ -&gt; 拷贝到本行最后一个字符
+
+`ye`
+· 从当前位置拷贝到本单词的最后一个字符
+
+还有一些命令并不一定你就一定要按y才会拷贝，下列命令也会被拷贝：
+· d（删除）
+· v（可视化的选择）
+· gU（变大写）
+· gu（变小写）
+等
+
+v -&gt; 先按v，然后移动光标，然后，可以d，可以y，也可以变大写
 </code></pre><h2 id="sublime-text下使用vim"><a href="#sublime-text下使用vim" class="headerlink" title="sublime text下使用vim"></a>sublime text下使用vim</h2><p><a href="http://feliving.github.io/Sublime-Text-3-Documentation/" target="_blank" rel="external">sublime text3 文档</a></p>
 <p><strong>在sublime下vim中不能用的命令</strong></p>
 <pre><code>&lt;C-r&gt; -&gt; redo               (恢复)
@@ -924,11 +953,11 @@ atx形式
 			
 		
 			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
 			
 		
 			
@@ -936,11 +965,11 @@ atx形式
 			
 		
 			
-				<li><a href="/tags/vimium/" title="vimium">vimium<sup>1</sup></a></li>
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+				<li><a href="/tags/vimium/" title="vimium">vimium<sup>1</sup></a></li>
 			
 		
 		</ul>
