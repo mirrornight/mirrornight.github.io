@@ -82,6 +82,148 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/06/10/xpath学习/" title="xpath学习" itemprop="url">xpath学习</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-10T03:26:34.000Z" itemprop="datePublished"> 发表于 2016-06-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>scrapy中只能用相对xpath</p>
+<h2 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a>XPath</h2><p><strong>XPath 是一门在XML文档中查找信息的语言。XPath可用来在XML文档中对元素和属性进行便利</strong></p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+
+&lt;bookstore&gt;                                --文档节点或根节点
+
+&lt;book&gt;
+  &lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;    --元素节点和属性节点和基本值
+  &lt;author&gt;J K. Rowling&lt;/author&gt;          
+  &lt;year&gt;2005&lt;/year&gt;
+  &lt;price&gt;29.99&lt;/price&gt;
+&lt;/book&gt;
+
+&lt;/bookstore&gt;
+</code></pre>
+<ol>
+<li>在 XPath 中，有七种类型的节点：元素、属性、文本、命名空间、处理指令、注释以及文档（根）节点。</li>
+<li><p>XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。</p>
+<p> <strong>选择节点</strong><br> bookstore<br> /bookstore<br> bookstore/book<br> //book               book下所有内容<br> bookstore//book<br> //@lang              所有名为lang的基本值</p>
+<p> <strong>谓语</strong><br> /bookstore/book[1]<br> /bookstore/book[last()]<br> /bookstore/book[last()-1]<br> /bookstore/book[position()&lt;3]<br> //title[@lang]       选取所有节点属性为lang下的title的所有内容</p>
+<p> <strong>选取未知节点</strong><br> //<em>                  选取所有内容<br> //title[@</em>]          选取所有带有属性的title下的内容</p>
+<p> <strong>选取若干路径</strong><br> //book/title | //book/price    </p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/xpath-scrapy-python/">xpath, scrapy, python,</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/10/python学习时遇到的问题/" title="python学习时遇到的问题" itemprop="url">python学习时遇到的问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-10T01:21:20.000Z" itemprop="datePublished"> 发表于 2016-06-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="在一个项目中引用上级目录的模块"><a href="#在一个项目中引用上级目录的模块" class="headerlink" title="在一个项目中引用上级目录的模块"></a>在一个项目中引用上级目录的模块</h2><p>学习scrapy时遇到了这个问题，头疼了半天<br>解决方法:使用相对导入</p>
+<blockquote>
+<p>from ..items import DmozItem<br>其中第一个点表示当前目录，第二个表示上一级父目录</p>
+</blockquote>
+<p><a href="https://www.python.org/dev/peps/pep-0328/#guido-s-decision" target="_blank" rel="external">PEP 0328 – Imports: Multi-Line and Absolute/Relative</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/遇到的问题/">遇到的问题</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/06/06/vimium命令/" title="vimium命令" itemprop="url">vimium命令</a>
   </h1>
   <p class="article-author">By
@@ -407,7 +549,7 @@ v -&gt; 先按v，然后移动光标，然后，可以d，可以y，也可以变
 <li>熟练window和linux下的各个常用命令</li>
 <li>熟练sublime的快捷键</li>
 </ol>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>安装谷歌插件vimium</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>安装谷歌插件vimium<br>安装火狐插件Vimperator<br>安装火狐插件Firebug</p>
 
         
         
@@ -838,78 +980,10 @@ atx形式
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/27/hello-world/" title="Hello World" itemprop="url">Hello World</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-27T06:35:49.782Z" itemprop="datePublished"> 发表于 2016-05-27</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/fun/">fun</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/hehe/">hehe</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
 
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
@@ -935,6 +1009,10 @@ atx形式
 			<li><a href="/categories/方向/" title="方向">方向<sup>1</sup></a></li>
 		  
 		
+		  
+			<li><a href="/categories/遇到的问题/" title="遇到的问题">遇到的问题<sup>1</sup></a></li>
+		  
+		
 		</ul>
 </div>
 
@@ -945,7 +1023,7 @@ atx形式
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
 			
 		
 			
@@ -953,11 +1031,11 @@ atx形式
 			
 		
 			
-				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
 			
 		
 			
@@ -965,11 +1043,15 @@ atx形式
 			
 		
 			
-				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
+				<li><a href="/tags/xpath-scrapy-python/" title="xpath, scrapy, python,">xpath, scrapy, python,<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/vimium/" title="vimium">vimium<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -980,7 +1062,7 @@ atx形式
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/sumline-text/" style="font-size: 10px;">sumline text</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimium/" style="font-size: 10px;">vimium</a>
+       <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/sumline-text/" style="font-size: 10px;">sumline text</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimium/" style="font-size: 10px;">vimium</a> <a href="/tags/xpath-scrapy-python/" style="font-size: 10px;">xpath, scrapy, python,</a>
     </div>
   </div>
 

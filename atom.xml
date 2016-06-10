@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-06-06T10:37:15.033Z</updated>
+  <updated>2016-06-10T07:13:40.508Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -14,6 +14,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>xpath学习</title>
+    <link href="http://mirrornight.github.io/2016/06/10/xpath%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://mirrornight.github.io/2016/06/10/xpath学习/</id>
+    <published>2016-06-10T03:26:34.000Z</published>
+    <updated>2016-06-10T07:13:40.508Z</updated>
+    
+    <content type="html">&lt;p&gt;scrapy中只能用相对xpath&lt;/p&gt;
+&lt;h2 id=&quot;XPath&quot;&gt;&lt;a href=&quot;#XPath&quot; class=&quot;headerlink&quot; title=&quot;XPath&quot;&gt;&lt;/a&gt;XPath&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;XPath 是一门在XML文档中查找信息的语言。XPath可用来在XML文档中对元素和属性进行便利&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot;?&amp;gt;
+
+&amp;lt;bookstore&amp;gt;                                --文档节点或根节点
+
+&amp;lt;book&amp;gt;
+  &amp;lt;title lang=&amp;quot;en&amp;quot;&amp;gt;Harry Potter&amp;lt;/title&amp;gt;    --元素节点和属性节点和基本值
+  &amp;lt;author&amp;gt;J K. Rowling&amp;lt;/author&amp;gt;          
+  &amp;lt;year&amp;gt;2005&amp;lt;/year&amp;gt;
+  &amp;lt;price&amp;gt;29.99&amp;lt;/price&amp;gt;
+&amp;lt;/book&amp;gt;
+
+&amp;lt;/bookstore&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;在 XPath 中，有七种类型的节点：元素、属性、文本、命名空间、处理指令、注释以及文档（根）节点。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;选择节点&lt;/strong&gt;&lt;br&gt; bookstore&lt;br&gt; /bookstore&lt;br&gt; bookstore/book&lt;br&gt; //book               book下所有内容&lt;br&gt; bookstore//book&lt;br&gt; //@lang              所有名为lang的基本值&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;谓语&lt;/strong&gt;&lt;br&gt; /bookstore/book[1]&lt;br&gt; /bookstore/book[last()]&lt;br&gt; /bookstore/book[last()-1]&lt;br&gt; /bookstore/book[position()&amp;lt;3]&lt;br&gt; //title[@lang]       选取所有节点属性为lang下的title的所有内容&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;选取未知节点&lt;/strong&gt;&lt;br&gt; //&lt;em&gt;                  选取所有内容&lt;br&gt; //title[@&lt;/em&gt;]          选取所有带有属性的title下的内容&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;选取若干路径&lt;/strong&gt;&lt;br&gt; //book/title | //book/price    &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;scrapy中只能用相对xpath&lt;/p&gt;
+&lt;h2 id=&quot;XPath&quot;&gt;&lt;a href=&quot;#XPath&quot; class=&quot;headerlink&quot; title=&quot;XPath&quot;&gt;&lt;/a&gt;XPath&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;XPath 是一门在XML文档中查找信息的语言。X
+    
+    </summary>
+    
+    
+      <category term="xpath, scrapy, python," scheme="http://mirrornight.github.io/tags/xpath-scrapy-python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python学习时遇到的问题</title>
+    <link href="http://mirrornight.github.io/2016/06/10/python%E5%AD%A6%E4%B9%A0%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://mirrornight.github.io/2016/06/10/python学习时遇到的问题/</id>
+    <published>2016-06-10T01:21:20.000Z</published>
+    <updated>2016-06-10T01:31:49.305Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;在一个项目中引用上级目录的模块&quot;&gt;&lt;a href=&quot;#在一个项目中引用上级目录的模块&quot; class=&quot;headerlink&quot; title=&quot;在一个项目中引用上级目录的模块&quot;&gt;&lt;/a&gt;在一个项目中引用上级目录的模块&lt;/h2&gt;&lt;p&gt;学习scrapy时遇到了这个问题，头疼了半天&lt;br&gt;解决方法:使用相对导入&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;from ..items import DmozItem&lt;br&gt;其中第一个点表示当前目录，第二个表示上一级父目录&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.python.org/dev/peps/pep-0328/#guido-s-decision&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;PEP 0328 – Imports: Multi-Line and Absolute/Relative&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;在一个项目中引用上级目录的模块&quot;&gt;&lt;a href=&quot;#在一个项目中引用上级目录的模块&quot; class=&quot;headerlink&quot; title=&quot;在一个项目中引用上级目录的模块&quot;&gt;&lt;/a&gt;在一个项目中引用上级目录的模块&lt;/h2&gt;&lt;p&gt;学习scrapy时遇到了这个问题，头
+    
+    </summary>
+    
+      <category term="遇到的问题" scheme="http://mirrornight.github.io/categories/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    
+    
+      <category term="python" scheme="http://mirrornight.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>vimium命令</title>
@@ -212,7 +284,7 @@ v -&amp;gt; 先按v，然后移动光标，然后，可以d，可以y，也可�
     <link href="http://mirrornight.github.io/2016/06/03/%E6%88%91%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%EF%BC%8C%E6%88%91%E9%9C%80%E8%A6%81%E4%BB%80%E4%B9%88/"/>
     <id>http://mirrornight.github.io/2016/06/03/我有什么要做，我需要什么/</id>
     <published>2016-06-03T06:12:01.000Z</published>
-    <updated>2016-06-06T09:13:49.421Z</updated>
+    <updated>2016-06-08T10:35:20.518Z</updated>
     
     <content type="html">&lt;h2 id=&quot;搭建一个高效的开发环境&quot;&gt;&lt;a href=&quot;#搭建一个高效的开发环境&quot; class=&quot;headerlink&quot; title=&quot;搭建一个高效的开发环境&quot;&gt;&lt;/a&gt;搭建一个高效的开发环境&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;熟练使用pycharm的各项快捷键，编写python程序&lt;/li&gt;
@@ -222,7 +294,7 @@ v -&amp;gt; 先按v，然后移动光标，然后，可以d，可以y，也可�
 &lt;li&gt;熟练window和linux下的各个常用命令&lt;/li&gt;
 &lt;li&gt;熟练sublime的快捷键&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;环境配置&quot;&gt;&lt;a href=&quot;#环境配置&quot; class=&quot;headerlink&quot; title=&quot;环境配置&quot;&gt;&lt;/a&gt;环境配置&lt;/h2&gt;&lt;p&gt;安装谷歌插件vimium&lt;/p&gt;
+&lt;h2 id=&quot;环境配置&quot;&gt;&lt;a href=&quot;#环境配置&quot; class=&quot;headerlink&quot; title=&quot;环境配置&quot;&gt;&lt;/a&gt;环境配置&lt;/h2&gt;&lt;p&gt;安装谷歌插件vimium&lt;br&gt;安装火狐插件Vimperator&lt;br&gt;安装火狐插件Firebug&lt;/p&gt;
 </content>
     
     <summary type="html">
