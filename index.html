@@ -112,14 +112,30 @@
 </code></pre>
 <ol>
 <li>在 XPath 中，有七种类型的节点：元素、属性、文本、命名空间、处理指令、注释以及文档（根）节点。</li>
-<li><p>XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。</p>
-<p> <strong>选择节点</strong><br> bookstore<br> /bookstore<br> bookstore/book<br> //book               book下所有内容<br> bookstore//book<br> //@lang              所有名为lang的基本值</p>
-<p> <strong>谓语</strong><br> /bookstore/book[1]<br> /bookstore/book[last()]<br> /bookstore/book[last()-1]<br> /bookstore/book[position()&lt;3]<br> //title[@lang]       选取所有节点属性为lang下的title的所有内容</p>
-<p> <strong>选取未知节点</strong><br> //<em>                  选取所有内容<br> //title[@</em>]          选取所有带有属性的title下的内容</p>
-<p> <strong>选取若干路径</strong><br> //book/title | //book/price    </p>
-</li>
+<li>XPath 使用路径表达式来选取 XML 文档中的节点或节点集。节点是通过沿着路径 (path) 或者步 (steps) 来选取的。</li>
 </ol>
+<pre><code>    __选择节点__
+    bookstore         
+    /bookstore        
+    bookstore/book
+    //book               book下所有内容
+    bookstore//book
+    //@lang              所有名为lang的基本值
 
+    __谓语__
+    /bookstore/book[1]
+    /bookstore/book[last()]
+    /bookstore/book[last()-1]
+    /bookstore/book[position()&lt;3]
+    //title[@lang]       选取所有节点属性为lang下的title的所有内容
+
+    __选取未知节点__
+    //*                  选取所有内容
+    //title[@*]          选取所有带有属性的title下的内容
+
+    __选取若干路径__
+    //book/title | //book/price
+</code></pre>
         
         
         <p class="article-more-link">
@@ -1031,19 +1047,15 @@ atx形式
 			
 		
 			
+				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/sumline-text/" title="sumline text">sumline text<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/hehe/" title="hehe">hehe<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/vimium/" title="vimium">vimium<sup>1</sup></a></li>
 			
 		
 			
@@ -1056,6 +1068,10 @@ atx形式
 		
 			
 				<li><a href="/tags/scrapy/" title="scrapy">scrapy<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/vimium/" title="vimium">vimium<sup>1</sup></a></li>
 			
 		
 		</ul>
