@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-06-10T07:26:37.162Z</updated>
+  <updated>2016-06-10T08:13:41.189Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -16,11 +16,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>正确使用搜索引擎</title>
+    <link href="http://mirrornight.github.io/2016/06/10/%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"/>
+    <id>http://mirrornight.github.io/2016/06/10/正确使用搜索引擎/</id>
+    <published>2016-06-10T08:13:41.000Z</published>
+    <updated>2016-06-10T08:13:41.189Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>xpath学习</title>
     <link href="http://mirrornight.github.io/2016/06/10/xpath%E5%AD%A6%E4%B9%A0/"/>
     <id>http://mirrornight.github.io/2016/06/10/xpath学习/</id>
     <published>2016-06-10T03:26:34.000Z</published>
-    <updated>2016-06-10T07:26:37.162Z</updated>
+    <updated>2016-06-10T07:38:17.516Z</updated>
     
     <content type="html">&lt;p&gt;scrapy中只能用相对xpath&lt;/p&gt;
 &lt;h2 id=&quot;XPath&quot;&gt;&lt;a href=&quot;#XPath&quot; class=&quot;headerlink&quot; title=&quot;XPath&quot;&gt;&lt;/a&gt;XPath&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;XPath 是一门在XML文档中查找信息的语言。XPath可用来在XML文档中对元素和属性进行便利&lt;/strong&gt;&lt;/p&gt;
