@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-07-08T07:54:28.456Z</updated>
+  <updated>2016-07-08T07:59:55.815Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -20,15 +20,13 @@
     <link href="http://mirrornight.github.io/2016/07/08/51%E5%8D%95%E7%89%87%E6%9C%BA%E7%94%B5%E5%AD%90%E6%97%B6%E9%92%9F/"/>
     <id>http://mirrornight.github.io/2016/07/08/51单片机电子时钟/</id>
     <published>2016-07-08T07:04:44.000Z</published>
-    <updated>2016-07-08T07:54:28.456Z</updated>
+    <updated>2016-07-08T07:59:55.815Z</updated>
     
-    <content type="html">&lt;p&gt;##protel设置&lt;/p&gt;
-&lt;p&gt;运行时报错是因为路径里有中文，环境变量配置问题&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;protel设置&quot;&gt;&lt;a href=&quot;#protel设置&quot; class=&quot;headerlink&quot; title=&quot;protel设置&quot;&gt;&lt;/a&gt;protel设置&lt;/h2&gt;&lt;p&gt;运行时报错是因为路径里有中文，环境变量配置问题&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;修改电脑的环境变量，右击【我的电脑】-&amp;gt;【属性】-&amp;gt;【高级】-&amp;gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改为%SystemRoot%\TEMP。还有下面一栏的系统变量，同样改法。如果没有TEMP与TMP项，可以新建一下。 改好后，再仿真试试。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;##遇到的一些问题&lt;/p&gt;
-&lt;ol&gt;
+&lt;h2 id=&quot;遇到的一些问题&quot;&gt;&lt;a href=&quot;#遇到的一些问题&quot; class=&quot;headerlink&quot; title=&quot;遇到的一些问题&quot;&gt;&lt;/a&gt;遇到的一些问题&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;51单片机和lcd连接的时候一定要接排阻。&lt;/li&gt;
 &lt;li&gt;EA（51单片机）在使用 片外 存储器时，需接低电平，直接接到GND。&lt;br&gt;如没有使用片外存储器，则必须接高电平，否则你的程序将不会执行&lt;/li&gt;
 &lt;/ol&gt;
@@ -292,10 +290,9 @@ void main()
     
     <summary type="html">
     
-      &lt;p&gt;##protel设置&lt;/p&gt;
-&lt;p&gt;运行时报错是因为路径里有中文，环境变量配置问题&lt;/p&gt;
+      &lt;h2 id=&quot;protel设置&quot;&gt;&lt;a href=&quot;#protel设置&quot; class=&quot;headerlink&quot; title=&quot;protel设置&quot;&gt;&lt;/a&gt;protel设置&lt;/h2&gt;&lt;p&gt;运行时报错是因为路径里有中文，环境变量配置问题&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;修改电脑的环境变量，右击【我的电脑】-&amp;gt;【属性】-&amp;gt;【高级】-&amp;gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变
+&lt;p&gt;修改
     
     </summary>
     
