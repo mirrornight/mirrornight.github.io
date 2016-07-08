@@ -5,23 +5,38 @@
   <meta name="google-site-verification" content="gd-rl6AdCOIJvlnB6pNS6geGplGD5h0FqdAYeDEjuw4" />
   <meta charset="UTF-8">
   
-    <title>git学习笔记 | mirror night的博客</title>
+    <title>51单片机电子时钟 | mirror night的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mirror night">
     
 
     
-    <meta name="description" content="关于git命令和git shell介绍">
+    <meta name="description" content="##protel设置运行时报错是因为路径里有中文，环境变量配置问题
+
+修改电脑的环境变量，右击【我的电脑】-&amp;gt;【属性】-&amp;gt;【高级】-&amp;gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改为%SystemRoot%\TEMP。还有下面一栏的系统变量，同样改法。如果没有TEMP与TMP项，可以新建一下。 改好后，再仿真试试。
+##遇到的一些问题
+
+51单片机和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习笔记">
-<meta property="og:url" content="http://mirrornight.github.io/2016/05/31/git学习笔记/index.html">
+<meta property="og:title" content="51单片机电子时钟">
+<meta property="og:url" content="http://mirrornight.github.io/2016/07/08/51单片机电子时钟/index.html">
 <meta property="og:site_name" content="mirror night的博客">
-<meta property="og:description" content="关于git命令和git shell介绍">
-<meta property="og:updated_time" content="2016-06-01T02:34:18.677Z">
+<meta property="og:description" content="##protel设置运行时报错是因为路径里有中文，环境变量配置问题
+
+修改电脑的环境变量，右击【我的电脑】-&amp;gt;【属性】-&amp;gt;【高级】-&amp;gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改为%SystemRoot%\TEMP。还有下面一栏的系统变量，同样改法。如果没有TEMP与TMP项，可以新建一下。 改好后，再仿真试试。
+##遇到的一些问题
+
+51单片机和">
+<meta property="og:updated_time" content="2016-07-08T07:27:26.069Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习笔记">
-<meta name="twitter:description" content="关于git命令和git shell介绍">
+<meta name="twitter:title" content="51单片机电子时钟">
+<meta name="twitter:description" content="##protel设置运行时报错是因为路径里有中文，环境变量配置问题
+
+修改电脑的环境变量，右击【我的电脑】-&amp;gt;【属性】-&amp;gt;【高级】-&amp;gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改为%SystemRoot%\TEMP。还有下面一栏的系统变量，同样改法。如果没有TEMP与TMP项，可以新建一下。 改好后，再仿真试试。
+##遇到的一些问题
+
+51单片机和">
 
     
     <link rel="alternative" href="/atom.xml" title="mirror night的博客" type="application/atom+xml">
@@ -81,14 +96,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/31/git学习笔记/" title="git学习笔记" itemprop="url">git学习笔记</a>
+      <a href="/2016/07/08/51单片机电子时钟/" title="51单片机电子时钟" itemprop="url">51单片机电子时钟</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-31T07:52:53.000Z" itemprop="datePublished"> 发表于 2016-05-31</time>
+    <time datetime="2016-07-08T07:04:44.000Z" itemprop="datePublished"> 发表于 2016-07-08</time>
     
   </p>
 </header>
@@ -97,67 +112,275 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+			
 		
 		</div>
 		
-		<h2 id="不同颜色的分支所代表的含义"><a href="#不同颜色的分支所代表的含义" class="headerlink" title="不同颜色的分支所代表的含义"></a>不同颜色的分支所代表的含义</h2><ul>
-<li>青色：代表本地储存库和远端储存库是同步状态</li>
-<li>红色：本地储存库的版本比远端储存库落后<br><code>git pull把远端储存库的变更抓回来更新本地储存库</code>                  </li>
-<li>黄色：目前本地储存库有些版本超前于远端储存库，而有些落后<br><code>先 git pull 在 git push 把本地的版本推送上去</code></li>
-<li>绿色：代表本地储存库超前于远端储存库<br><code>git push</code></li>
-</ul>
-<h2 id="工作目录档案状态符号与颜色所代表的含义"><a href="#工作目录档案状态符号与颜色所代表的含义" class="headerlink" title="工作目录档案状态符号与颜色所代表的含义"></a>工作目录档案状态符号与颜色所代表的含义</h2><ul>
-<li><code>+</code> = 有 n 个新增档案</li>
-<li><code>~</code> = 有 n 个档案被更新</li>
-<li><code>-</code> = 有 n 个档案被删除</li>
-<li><code>!</code> = 有 n 个档案在合并时发生冲突</li>
-<li>暗红色：代表这些档案处于untracked 或not staged状态</li>
-<li>暗绿色：代表这些档案处于staged状态</li>
-</ul>
-<h2 id="git-shell命令"><a href="#git-shell命令" class="headerlink" title="git shell命令"></a>git shell命令</h2><pre><code>usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
-           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
-           &lt;command&gt; [&lt;args&gt;]
+		<p>##protel设置<br>运行时报错是因为路径里有中文，环境变量配置问题</p>
+<blockquote>
+<p>修改电脑的环境变量，右击【我的电脑】-&gt;【属性】-&gt;【高级】-&gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改为%SystemRoot%\TEMP。还有下面一栏的系统变量，同样改法。如果没有TEMP与TMP项，可以新建一下。 改好后，再仿真试试。</p>
+<p>##遇到的一些问题</p>
+<ol>
+<li>51单片机和lcd连接的时候一定要接排阻。</li>
+<li>EA（51单片机）在使用 片外 存储器时，需接低电平，直接接到GND。<br>如没有使用片外存储器，则必须接高电平，否则你的程序将不会执行</li>
+</ol>
+</blockquote>
+<pre><code class="c">/*
+51单片机制作的电子时钟
 
-These are common Git commands used in various situations:
+使用主要元件：
+AT89C51单片机，LCD1602
 
-start a working area (see also: git help tutorial)
-   clone      Clone a repository into a new directory
-   init       Create an empty Git repository or reinitialize an existing one
+功能：
+显示时间，可用按键调节时间
 
-work on the current change (see also: git help everyday)
-   add        Add file contents to the index
-   mv         Move or rename a file, a directory, or a symlink
-   reset      Reset current HEAD to the specified state
-   rm         Remove files from the working tree and from the index
+控制方法：
+S1按下进入时间设置模式，按钮调节指针位置，每次按下调到不同的位置
+S2按钮进行时间加
+S3按钮进行时间减
+*/
 
-examine the history and state (see also: git help revisions)
-   bisect     Use binary search to find the commit that introduced a bug
-   grep       Print lines matching a pattern
-   log        Show commit logs
-   show       Show various types of objects
-   status     Show the working tree status
+#include &lt;reg52.h&gt;
+#define uchar unsigned char
+#define uint unsigned int
+#define BUSY 0x80
+sbit RS=P2^5;
+sbit RW=P2^6;
+sbit E=P2^7;
 
-grow, mark and tweak your common history
-   branch     List, create, or delete branches
-   checkout   Switch branches or restore working tree files
-   commit     Record changes to the repository
-   diff       Show changes between commits, commit and working tree, etc
-   merge      Join two or more development histories together
-   rebase     Reapply commits on top of another base tip
-   tag        Create, list, delete or verify a tag object signed with GPG
+sbit s1=P3^0;
+sbit s2=P3^1;
+sbit s3=P3^2;
 
-collaborate (see also: git help workflows)
-   fetch      Download objects and refs from another repository
-   pull       Fetch from and integrate with another repository or a local branch
-   push       Update remote refs along with associated objects
+char shi,fen,miao;
 
-&#39;git help -a&#39; and &#39;git help -g&#39; list available subcommands and some
-concept guides. See &#39;git help &lt;command&gt;&#39; or &#39;git help &lt;concept&gt;&#39;
-to read about a specific subcommand or concept.
-</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://blog.miniasp.com/post/2014/01/05/The-color-meaning-in-Git-Shell-prompt.aspx" target="_blank" rel="external">GitHub for Windows 內建 Git Shell 執行時顏色所代表的意義 </a></p>
+uchar count,s1num;
+uchar code table[]=&quot;  2016-7-8 5&quot;;
+uchar code table1[]=&quot;  00:00:00&quot;;
+
+void delay(uint z)  //延迟函数
+{
+    uint x,y;
+    for(x=z;x&gt;0;x--)
+    {
+        for(y=110;y&gt;0;y--);
+    }
+}
+
+void write_com(uchar com)  //写命令
+{
+    RS=0;
+    RW=0;
+    E=0;
+    P0=com;
+    delay(5);
+    E=1;
+    delay(5);
+    E=0;
+}
+
+void write_date(uchar date) //写数据
+{
+    RS=1;
+    RW=0;
+    E=0;
+    P0=date;
+    delay(5);
+    E=1;
+    delay(5);
+    E=0;
+}
+
+void init() //初始化
+{
+    uchar num;
+    E=0;
+//    shi=00;
+//    fen=;
+//    miao=40;
+    write_com(0x38);  //显示模式设置
+    write_com(0x0c);  //开显示，不显示光标，光标不闪烁
+    write_com(0x06);  //当读或写一个字符后地址指针加一，且光标加一
+    write_com(0x01);  //显示清屏
+    write_com(0x80);  //设置数据地址指针
+    for(num=0;num&lt;12;num++)
+    {
+        write_date(table[num]); //将前面数组里的数写入
+        delay(20);
+    }
+    write_com(0x80+0x40);
+    for(num=0;num&lt;10;num++)
+    {
+        write_date(table1[num]);
+        delay(20);
+    }
+    TMOD=0x01;        //低四位设置定时器0工作在方式1
+    TH0=(65536-50000)/256;
+    TL0=(65536-50000)%256;//定时的时间
+    EA=1;
+    ET0=1;   //定时器0的中断允许
+    TR0=1;   //定时器0的运行开关
+}
+
+void write_sfm(uchar add,uchar date)  //将时间写入lcd
+{
+    uchar shi,ge;
+    shi=date/10;
+    ge=date%10;
+    write_com(0x80+0x40+add);
+    write_date(0x30+shi);
+    write_date(0x30+ge);
+}
+
+void timer0() interrupt 1   //中断程序
+{
+    TH0=(65536-50000)/256;
+    TL0=(65536-50000)%256;
+    count++;                //过50ms后记一次数
+    if(count==20)           //过一秒后执行下面的程序
+    {
+        count=0;            //时钟自走程序
+        miao++;
+        if(miao==60)
+        {
+            miao=0;
+            fen++;
+            if(fen==60)
+            {
+                fen=0;
+                shi++;
+                if(shi==24)
+                {
+                    shi=0;
+                }
+                write_sfm(2,shi);
+            }
+            write_sfm(5,fen);
+        }
+        write_sfm(8,miao);
+    }
+}
+
+void keyscan()   //开关调时间程序
+{
+    if(s1==0)
+    {
+        delay(5);//防抖延迟
+        if(s1==0)
+        {
+            s1num++;
+            while(!s1); //防抖检测    
+            if(s1num==1)
+            {
+                TR0=0;  //定时器停止运行
+                write_com(0x80+0x40+9);  //调整光标的位置到秒
+                write_com(0x0f);         //显示光标
+            }
+            if(s1num==2)
+            {
+                write_com(0x80+0x40+6);  //调整光标的位置到分
+            }
+            if(s1num==3)
+            {
+                write_com(0x80+0x40+3);  //调整光标的位置到时
+            }
+            if(s1num==4)
+            {
+                s1num=0;
+                write_com(0x0c);
+                TR0=1;
+            }
+        }
+    }
+    if(s1num!=0)        //检测按键2，设置时间的按键：加
+    {
+        if(s2==0)     
+        {
+            delay(5);
+            if(s2==0)
+            {
+                while(!s2);
+                if(s1num==1)
+                {
+                    miao++;
+                    if(miao==60)
+                    {
+                        miao=0;
+                    }
+                    write_sfm(8,miao);   //先进行时间加运算，此时指针会移动到秒数据的后一格
+                    write_com(0x80+0x40+9);//调节指针的位置到秒的位置
+                }
+                if(s1num==2)
+                {
+                    fen++;
+                    if(fen==60)
+                    {
+                        fen=0;
+                    }
+                    write_sfm(5,fen);
+                    write_com(0x80+0x40+6);
+                }
+                if(s1num==3)
+                {
+                    shi++;
+                    if(shi==24)
+                    {
+                        shi=0;
+                    }
+                    write_sfm(2,shi);
+                    write_com(0x80+0x40+3);
+                }
+            }
+        }
+        if(s3==0)         //按键功能减
+        {
+            delay(5);
+            if(s3==0)
+            {
+                while(!s3);
+                if(s1num==1)
+                {
+                    miao--;
+                    if(miao==-1)
+                    {
+                        miao=59;
+                    }
+                    write_sfm(8,miao);
+                    write_com(0x80+0x40+9);
+                }
+                if(s1num==2)
+                {
+                    fen--;
+                    if(fen==-1)
+                    {
+                        fen=59;
+                    }
+                    write_sfm(5,fen);
+                    write_com(0x80+0x40+6);
+                }
+                if(s1num==3)
+                {
+                    shi--;
+                    if(shi==-1)
+                    {
+                        shi=23;
+                    }
+                    write_sfm(2,shi);
+                    write_com(0x80+0x40+3);
+                }
+            }
+        }
+    }
+}
+void main()
+{
+    init();
+    while(1)
+    {
+        keyscan();
+    }
+}
+</code></pre>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -165,13 +388,13 @@ to read about a specific subcommand or concept.
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/命令参考手册/">命令参考手册</a>
+  <a class="article-category-link" href="/categories/自动化/">自动化</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a>
+  <span></span> <a href="/tags/单片机/">单片机</a>
   </div>
 
 </div>
@@ -180,7 +403,7 @@ to read about a specific subcommand or concept.
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mirrornight.github.io/2016/05/31/git学习笔记/" data-title="git学习笔记 | mirror night的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mirrornight.github.io/2016/07/08/51单片机电子时钟/" data-title="51单片机电子时钟 | mirror night的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -193,19 +416,11 @@ to read about a specific subcommand or concept.
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/06/01/python编解码问题/" title="python2中编解码问题">
-  <strong>上一篇：</strong><br/>
-  <span>
-  python2中编解码问题</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/30/pip命令参考/"  title="pip命令参考">
+<a href="/2016/06/24/daily/"  title="daily">
  <strong>下一篇：</strong><br/> 
- <span>pip命令参考
+ <span>daily
 </span>
 </a>
 </div>
@@ -220,7 +435,7 @@ to read about a specific subcommand or concept.
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+ 
  
   </div>
 

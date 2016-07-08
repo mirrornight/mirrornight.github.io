@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mirrornight.github.io/"/>
-  <updated>2016-06-10T08:13:41.189Z</updated>
+  <updated>2016-07-08T07:27:26.069Z</updated>
   <id>http://mirrornight.github.io/</id>
   
   <author>
@@ -16,18 +16,484 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>51单片机电子时钟</title>
+    <link href="http://mirrornight.github.io/2016/07/08/51%E5%8D%95%E7%89%87%E6%9C%BA%E7%94%B5%E5%AD%90%E6%97%B6%E9%92%9F/"/>
+    <id>http://mirrornight.github.io/2016/07/08/51单片机电子时钟/</id>
+    <published>2016-07-08T07:04:44.000Z</published>
+    <updated>2016-07-08T07:27:26.069Z</updated>
+    
+    <content type="html">&lt;p&gt;##protel设置&lt;br&gt;运行时报错是因为路径里有中文，环境变量配置问题&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;修改电脑的环境变量，右击【我的电脑】-&amp;gt;【属性】-&amp;gt;【高级】-&amp;gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改为%SystemRoot%\TEMP。还有下面一栏的系统变量，同样改法。如果没有TEMP与TMP项，可以新建一下。 改好后，再仿真试试。&lt;/p&gt;
+&lt;p&gt;##遇到的一些问题&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;51单片机和lcd连接的时候一定要接排阻。&lt;/li&gt;
+&lt;li&gt;EA（51单片机）在使用 片外 存储器时，需接低电平，直接接到GND。&lt;br&gt;如没有使用片外存储器，则必须接高电平，否则你的程序将不会执行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;c&quot;&gt;/*
+51单片机制作的电子时钟
+
+使用主要元件：
+AT89C51单片机，LCD1602
+
+功能：
+显示时间，可用按键调节时间
+
+控制方法：
+S1按下进入时间设置模式，按钮调节指针位置，每次按下调到不同的位置
+S2按钮进行时间加
+S3按钮进行时间减
+*/
+
+#include &amp;lt;reg52.h&amp;gt;
+#define uchar unsigned char
+#define uint unsigned int
+#define BUSY 0x80
+sbit RS=P2^5;
+sbit RW=P2^6;
+sbit E=P2^7;
+
+sbit s1=P3^0;
+sbit s2=P3^1;
+sbit s3=P3^2;
+
+char shi,fen,miao;
+
+uchar count,s1num;
+uchar code table[]=&amp;quot;  2016-7-8 5&amp;quot;;
+uchar code table1[]=&amp;quot;  00:00:00&amp;quot;;
+
+void delay(uint z)  //延迟函数
+{
+    uint x,y;
+    for(x=z;x&amp;gt;0;x--)
+    {
+        for(y=110;y&amp;gt;0;y--);
+    }
+}
+
+void write_com(uchar com)  //写命令
+{
+    RS=0;
+    RW=0;
+    E=0;
+    P0=com;
+    delay(5);
+    E=1;
+    delay(5);
+    E=0;
+}
+
+void write_date(uchar date) //写数据
+{
+    RS=1;
+    RW=0;
+    E=0;
+    P0=date;
+    delay(5);
+    E=1;
+    delay(5);
+    E=0;
+}
+
+void init() //初始化
+{
+    uchar num;
+    E=0;
+//    shi=00;
+//    fen=;
+//    miao=40;
+    write_com(0x38);  //显示模式设置
+    write_com(0x0c);  //开显示，不显示光标，光标不闪烁
+    write_com(0x06);  //当读或写一个字符后地址指针加一，且光标加一
+    write_com(0x01);  //显示清屏
+    write_com(0x80);  //设置数据地址指针
+    for(num=0;num&amp;lt;12;num++)
+    {
+        write_date(table[num]); //将前面数组里的数写入
+        delay(20);
+    }
+    write_com(0x80+0x40);
+    for(num=0;num&amp;lt;10;num++)
+    {
+        write_date(table1[num]);
+        delay(20);
+    }
+    TMOD=0x01;        //低四位设置定时器0工作在方式1
+    TH0=(65536-50000)/256;
+    TL0=(65536-50000)%256;//定时的时间
+    EA=1;
+    ET0=1;   //定时器0的中断允许
+    TR0=1;   //定时器0的运行开关
+}
+
+void write_sfm(uchar add,uchar date)  //将时间写入lcd
+{
+    uchar shi,ge;
+    shi=date/10;
+    ge=date%10;
+    write_com(0x80+0x40+add);
+    write_date(0x30+shi);
+    write_date(0x30+ge);
+}
+
+void timer0() interrupt 1   //中断程序
+{
+    TH0=(65536-50000)/256;
+    TL0=(65536-50000)%256;
+    count++;                //过50ms后记一次数
+    if(count==20)           //过一秒后执行下面的程序
+    {
+        count=0;            //时钟自走程序
+        miao++;
+        if(miao==60)
+        {
+            miao=0;
+            fen++;
+            if(fen==60)
+            {
+                fen=0;
+                shi++;
+                if(shi==24)
+                {
+                    shi=0;
+                }
+                write_sfm(2,shi);
+            }
+            write_sfm(5,fen);
+        }
+        write_sfm(8,miao);
+    }
+}
+
+void keyscan()   //开关调时间程序
+{
+    if(s1==0)
+    {
+        delay(5);//防抖延迟
+        if(s1==0)
+        {
+            s1num++;
+            while(!s1); //防抖检测    
+            if(s1num==1)
+            {
+                TR0=0;  //定时器停止运行
+                write_com(0x80+0x40+9);  //调整光标的位置到秒
+                write_com(0x0f);         //显示光标
+            }
+            if(s1num==2)
+            {
+                write_com(0x80+0x40+6);  //调整光标的位置到分
+            }
+            if(s1num==3)
+            {
+                write_com(0x80+0x40+3);  //调整光标的位置到时
+            }
+            if(s1num==4)
+            {
+                s1num=0;
+                write_com(0x0c);
+                TR0=1;
+            }
+        }
+    }
+    if(s1num!=0)        //检测按键2，设置时间的按键：加
+    {
+        if(s2==0)     
+        {
+            delay(5);
+            if(s2==0)
+            {
+                while(!s2);
+                if(s1num==1)
+                {
+                    miao++;
+                    if(miao==60)
+                    {
+                        miao=0;
+                    }
+                    write_sfm(8,miao);   //先进行时间加运算，此时指针会移动到秒数据的后一格
+                    write_com(0x80+0x40+9);//调节指针的位置到秒的位置
+                }
+                if(s1num==2)
+                {
+                    fen++;
+                    if(fen==60)
+                    {
+                        fen=0;
+                    }
+                    write_sfm(5,fen);
+                    write_com(0x80+0x40+6);
+                }
+                if(s1num==3)
+                {
+                    shi++;
+                    if(shi==24)
+                    {
+                        shi=0;
+                    }
+                    write_sfm(2,shi);
+                    write_com(0x80+0x40+3);
+                }
+            }
+        }
+        if(s3==0)         //按键功能减
+        {
+            delay(5);
+            if(s3==0)
+            {
+                while(!s3);
+                if(s1num==1)
+                {
+                    miao--;
+                    if(miao==-1)
+                    {
+                        miao=59;
+                    }
+                    write_sfm(8,miao);
+                    write_com(0x80+0x40+9);
+                }
+                if(s1num==2)
+                {
+                    fen--;
+                    if(fen==-1)
+                    {
+                        fen=59;
+                    }
+                    write_sfm(5,fen);
+                    write_com(0x80+0x40+6);
+                }
+                if(s1num==3)
+                {
+                    shi--;
+                    if(shi==-1)
+                    {
+                        shi=23;
+                    }
+                    write_sfm(2,shi);
+                    write_com(0x80+0x40+3);
+                }
+            }
+        }
+    }
+}
+void main()
+{
+    init();
+    while(1)
+    {
+        keyscan();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##protel设置&lt;br&gt;运行时报错是因为路径里有中文，环境变量配置问题&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;修改电脑的环境变量，右击【我的电脑】-&amp;gt;【属性】-&amp;gt;【高级】-&amp;gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改
+    
+    </summary>
+    
+      <category term="自动化" scheme="http://mirrornight.github.io/categories/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+    
+      <category term="单片机" scheme="http://mirrornight.github.io/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>daily</title>
+    <link href="http://mirrornight.github.io/2016/06/24/daily/"/>
+    <id>http://mirrornight.github.io/2016/06/24/daily/</id>
+    <published>2016-06-24T09:04:55.000Z</published>
+    <updated>2016-07-08T06:59:51.392Z</updated>
+    
+    <content type="html">&lt;p&gt;##2016/6/23&lt;br&gt;看完了反叛的鲁鲁修。&lt;/p&gt;
+&lt;p&gt;##2016/7/8&lt;br&gt;攻壳机动队&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##2016/6/23&lt;br&gt;看完了反叛的鲁鲁修。&lt;/p&gt;
+&lt;p&gt;##2016/7/8&lt;br&gt;攻壳机动队&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="daily" scheme="http://mirrornight.github.io/categories/daily/"/>
+    
+    
+      <category term="daily" scheme="http://mirrornight.github.io/tags/daily/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python类中的类变量和实例变量</title>
+    <link href="http://mirrornight.github.io/2016/06/12/python%E7%B1%BB%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F/"/>
+    <id>http://mirrornight.github.io/2016/06/12/python类中的类变量和实例变量/</id>
+    <published>2016-06-12T09:01:31.000Z</published>
+    <updated>2016-06-12T09:29:59.730Z</updated>
+    
+    <content type="html">&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;class aa:
+      w = 10           # 类属性
+      def __init__(self):
+           self.x = 11
+           self.y = 12
+      def add(self):
+           return self.x + self.y
+
+a = aa()               # a是aa类的一个实例
+print a.add()          # 23
+# 下边两条指令各起何作用？结果是输出两个 20 么？还是两个13？还是？
+aa.w = 20              # 改变类变量的值为20
+a.w = 13               # 改变实例变量的值为13
+print aa.w, a.w        # 20 ，13
+# 程序继续增加如下，怎样理解这t和q呢？他们是___变量
+a.t = 14               # 给实例添加属性
+a.q = 15               
+print a.t, a.q
+# 程序继续增加如下，怎样理解这 m 和 n呢？他们是___变量
+aa.m = 30              # 给类添加属性
+aa.n = 40
+print aa.m, aa.n
+
+# 好了再来个提升吧
+# 程序继续增加,下列三个print语句都能正确执行么？为何？
+b = aa()
+print b.x,b.y
+print b.t,b.q          # 报错a和b是不同的实例
+print b.m,b.n          # 和前面的aa.m,aa.n一样，实例变量访问类变量
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;class aa:
+      w = 10           # 类属性
+      def __init__(self):
+           self.x = 11
+           self.y = 12
+   
+    
+    </summary>
+    
+      <category term="python学习中感到疑惑的部分" scheme="http://mirrornight.github.io/categories/python%E5%AD%A6%E4%B9%A0%E4%B8%AD%E6%84%9F%E5%88%B0%E7%96%91%E6%83%91%E7%9A%84%E9%83%A8%E5%88%86/"/>
+    
+    
+      <category term="python" scheme="http://mirrornight.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>scrapy框架学习</title>
+    <link href="http://mirrornight.github.io/2016/06/12/scrapy%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://mirrornight.github.io/2016/06/12/scrapy框架学习/</id>
+    <published>2016-06-12T08:30:24.000Z</published>
+    <updated>2016-06-12T11:43:54.886Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;体会&quot;&gt;&lt;a href=&quot;#体会&quot; class=&quot;headerlink&quot; title=&quot;体会&quot;&gt;&lt;/a&gt;体会&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;看到陌生的代码要从两方面去理解：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从整体上理解，不要纠结细节，弄清每个函数的作用&lt;/li&gt;
+&lt;li&gt;从细节上去理解，哪个关键字没见过，这些函数的参数是什么，等..即语言的语法本身上去理解&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;# -*- coding: utf-8 -*-
+from scrapy.selector import Selector
+from scrapy.http import Request
+from scrapy.contrib.spiders import CrawlSpider
+from scrapy.contrib.loader import ItemLoader
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from ..items import BbsdmozItem
+
+class forumSpider(CrawlSpider):
+    name = &amp;#39;bbsSpider&amp;#39;
+    allow_domain = [&amp;#39;bbs.sjtu.edu.cn&amp;#39;]
+    start_urls = [&amp;#39;https://bbs.sjtu.edu.cn/bbsall&amp;#39;]
+    # 这里弄不清类变量和继承的关系了
+    # 这里类变量和继承没关系，继承是出现在方法中的
+
+    link_extractor = {
+        &amp;#39;page&amp;#39;: SgmlLinkExtractor(allow=&amp;#39;/bbsdoc,board,\w+\.html$&amp;#39;),
+        &amp;#39;page_down&amp;#39;: SgmlLinkExtractor(allow=&amp;#39;/bbsdoc,board,\w+,page,\d+\.html$&amp;#39;),
+        &amp;#39;content&amp;#39;: SgmlLinkExtractor(allow=&amp;#39;/bbscon,board,\w+,file,M\.\d+\.A\.html$&amp;#39;),
+    }
+    # link_extractor是字典，这里SgmlLinkExtractor(allow=&amp;#39;/bbscon,board,\w+,file,M\.\d+\.A\.html$&amp;#39;)是对象。
+    # 字典中的值可以取任何数据类型，但必须是不变的。
+    _x_query = {
+        &amp;#39;page_content&amp;#39;: &amp;#39;//pre/text()[2]&amp;#39;,
+        &amp;#39;poster&amp;#39;: &amp;#39;//pre/a/text()&amp;#39;,
+        &amp;#39;forum&amp;#39;: &amp;#39;//center/text()[2]&amp;#39;,
+    }
+    # 单下划线开头的变量代表保护变量，不能用于’from module import *’ 
+    # 以单下划线开头的表示的是protected类型的变量。即保护类型只能允许其本身与子类进行访问。
+
+    def parse(self, response):
+        for link in self.link_extractor[&amp;#39;page&amp;#39;].extract_links(response):
+            # 使用 extract_links(response)方法，获取匹配到的链接
+            yield Request(url=link.url, callback=self.parse_page)
+            #Request对象接受一个参数callback指定这个Request返回的网页内容的解析函数
+
+    def parse_page(self, response):
+        for link in self.link_extractor[&amp;#39;page_down&amp;#39;].extract_links(response):
+            yield Request(url=link.url, callback=self.parse_page)
+
+        for link in self.link_extractor[&amp;#39;content&amp;#39;].extract_links(response):
+            yield Request(url=link.url, callback=self.parse_content)
+
+    def parse_content(self, response):
+        bbsItem_loader = ItemLoader(item=BbsdmozItem, response=response)
+        url = str(response.url)
+        bbsItem_loader.add_value(&amp;#39;url&amp;#39;, url)
+        bbsItem_loader.add_xpath(&amp;#39;forum&amp;#39;, self._x_query[&amp;#39;forum&amp;#39;])
+        bbsItem_loader.add_xpath(&amp;#39;poster&amp;#39;, self._x_query[&amp;#39;poster&amp;#39;])
+        bbsItem_loader.add_xpath(&amp;#39;content&amp;#39;, self._x_query[&amp;#39;page_content&amp;#39;])
+
+        return bbsItem_loader.load_item()
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;体会&quot;&gt;&lt;a href=&quot;#体会&quot; class=&quot;headerlink&quot; title=&quot;体会&quot;&gt;&lt;/a&gt;体会&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;看到陌生的代码要从两方面去理解：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从整体上理解，不要纠结细节，弄清每个函数的作用
+    
+    </summary>
+    
+      <category term="遇到的问题" scheme="http://mirrornight.github.io/categories/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    
+    
+      <category term="python" scheme="http://mirrornight.github.io/tags/python/"/>
+    
+      <category term="scrapy" scheme="http://mirrornight.github.io/tags/scrapy/"/>
+    
+  </entry>
+  
+  <entry>
     <title>正确使用搜索引擎</title>
     <link href="http://mirrornight.github.io/2016/06/10/%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"/>
     <id>http://mirrornight.github.io/2016/06/10/正确使用搜索引擎/</id>
     <published>2016-06-10T08:13:41.000Z</published>
-    <updated>2016-06-10T08:13:41.189Z</updated>
+    <updated>2016-06-12T11:23:49.625Z</updated>
     
-    <content type="html"></content>
+    <content type="html">&lt;p&gt;2016/6/12&lt;/p&gt;
+&lt;p&gt;今天搜索scrapy时发现的问题&lt;br&gt;因为看不懂官方文档，脑子里一团糟，开始瞎搜索，结果只是浪费了时间。&lt;br&gt;晚上的时候冷静下来发现了可以更换一下思路。&lt;br&gt;直接收scrap教程时，往往都是些较浅的内容而且内容大致相同并没有太大收获。但加了一些关键字之后就可以发现一些好文章了，例“scrapy callback”。再在包含关键字的文章里找到作者的其他关于scrapy的文章，看看对自己帮助应该很大的。&lt;/p&gt;
+&lt;p&gt;scrapy的文章收录在火狐的‘博客中’&lt;/p&gt;
+</content>
     
     <summary type="html">
     
+      &lt;p&gt;2016/6/12&lt;/p&gt;
+&lt;p&gt;今天搜索scrapy时发现的问题&lt;br&gt;因为看不懂官方文档，脑子里一团糟，开始瞎搜索，结果只是浪费了时间。&lt;br&gt;晚上的时候冷静下来发现了可以更换一下思路。&lt;br&gt;直接收scrap教程时，往往都是些较浅的内容而且内容大致相同并没有太大收获。
+    
     </summary>
     
+      <category term="榨汁机" scheme="http://mirrornight.github.io/categories/%E6%A6%A8%E6%B1%81%E6%9C%BA/"/>
+    
+    
+      <category term="google" scheme="http://mirrornight.github.io/tags/google/"/>
     
   </entry>
   
@@ -90,9 +556,9 @@
     
       <category term="python" scheme="http://mirrornight.github.io/tags/python/"/>
     
-      <category term="xpath" scheme="http://mirrornight.github.io/tags/xpath/"/>
-    
       <category term="scrapy" scheme="http://mirrornight.github.io/tags/scrapy/"/>
+    
+      <category term="xpath" scheme="http://mirrornight.github.io/tags/xpath/"/>
     
   </entry>
   

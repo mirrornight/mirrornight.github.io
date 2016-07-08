@@ -5,23 +5,47 @@
   <meta name="google-site-verification" content="gd-rl6AdCOIJvlnB6pNS6geGplGD5h0FqdAYeDEjuw4" />
   <meta charset="UTF-8">
   
-    <title>git学习笔记 | mirror night的博客</title>
+    <title>scrapy框架学习 | mirror night的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="mirror night">
     
 
     
-    <meta name="description" content="关于git命令和git shell介绍">
+    <meta name="description" content="体会看到陌生的代码要从两方面去理解：
+
+从整体上理解，不要纠结细节，弄清每个函数的作用
+从细节上去理解，哪个关键字没见过，这些函数的参数是什么，等..即语言的语法本身上去理解
+
+# -*- coding: utf-8 -*-
+from scrapy.selector import Selector
+from scrapy.http import Request
+from scrapy.contri">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习笔记">
-<meta property="og:url" content="http://mirrornight.github.io/2016/05/31/git学习笔记/index.html">
+<meta property="og:title" content="scrapy框架学习">
+<meta property="og:url" content="http://mirrornight.github.io/2016/06/12/scrapy框架学习/index.html">
 <meta property="og:site_name" content="mirror night的博客">
-<meta property="og:description" content="关于git命令和git shell介绍">
-<meta property="og:updated_time" content="2016-06-01T02:34:18.677Z">
+<meta property="og:description" content="体会看到陌生的代码要从两方面去理解：
+
+从整体上理解，不要纠结细节，弄清每个函数的作用
+从细节上去理解，哪个关键字没见过，这些函数的参数是什么，等..即语言的语法本身上去理解
+
+# -*- coding: utf-8 -*-
+from scrapy.selector import Selector
+from scrapy.http import Request
+from scrapy.contri">
+<meta property="og:updated_time" content="2016-06-12T11:43:54.886Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习笔记">
-<meta name="twitter:description" content="关于git命令和git shell介绍">
+<meta name="twitter:title" content="scrapy框架学习">
+<meta name="twitter:description" content="体会看到陌生的代码要从两方面去理解：
+
+从整体上理解，不要纠结细节，弄清每个函数的作用
+从细节上去理解，哪个关键字没见过，这些函数的参数是什么，等..即语言的语法本身上去理解
+
+# -*- coding: utf-8 -*-
+from scrapy.selector import Selector
+from scrapy.http import Request
+from scrapy.contri">
 
     
     <link rel="alternative" href="/atom.xml" title="mirror night的博客" type="application/atom+xml">
@@ -81,14 +105,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/31/git学习笔记/" title="git学习笔记" itemprop="url">git学习笔记</a>
+      <a href="/2016/06/12/scrapy框架学习/" title="scrapy框架学习" itemprop="url">scrapy框架学习</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-31T07:52:53.000Z" itemprop="datePublished"> 发表于 2016-05-31</time>
+    <time datetime="2016-06-12T08:30:24.000Z" itemprop="datePublished"> 发表于 2016-06-12</time>
     
   </p>
 </header>
@@ -97,67 +121,68 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#体会"><span class="toc-number">1.</span> <span class="toc-text">体会</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="不同颜色的分支所代表的含义"><a href="#不同颜色的分支所代表的含义" class="headerlink" title="不同颜色的分支所代表的含义"></a>不同颜色的分支所代表的含义</h2><ul>
-<li>青色：代表本地储存库和远端储存库是同步状态</li>
-<li>红色：本地储存库的版本比远端储存库落后<br><code>git pull把远端储存库的变更抓回来更新本地储存库</code>                  </li>
-<li>黄色：目前本地储存库有些版本超前于远端储存库，而有些落后<br><code>先 git pull 在 git push 把本地的版本推送上去</code></li>
-<li>绿色：代表本地储存库超前于远端储存库<br><code>git push</code></li>
-</ul>
-<h2 id="工作目录档案状态符号与颜色所代表的含义"><a href="#工作目录档案状态符号与颜色所代表的含义" class="headerlink" title="工作目录档案状态符号与颜色所代表的含义"></a>工作目录档案状态符号与颜色所代表的含义</h2><ul>
-<li><code>+</code> = 有 n 个新增档案</li>
-<li><code>~</code> = 有 n 个档案被更新</li>
-<li><code>-</code> = 有 n 个档案被删除</li>
-<li><code>!</code> = 有 n 个档案在合并时发生冲突</li>
-<li>暗红色：代表这些档案处于untracked 或not staged状态</li>
-<li>暗绿色：代表这些档案处于staged状态</li>
-</ul>
-<h2 id="git-shell命令"><a href="#git-shell命令" class="headerlink" title="git shell命令"></a>git shell命令</h2><pre><code>usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
-           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
-           &lt;command&gt; [&lt;args&gt;]
+		<h2 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h2><p><strong>看到陌生的代码要从两方面去理解：</strong></p>
+<ol>
+<li>从整体上理解，不要纠结细节，弄清每个函数的作用</li>
+<li>从细节上去理解，哪个关键字没见过，这些函数的参数是什么，等..即语言的语法本身上去理解</li>
+</ol>
+<pre><code class="python"># -*- coding: utf-8 -*-
+from scrapy.selector import Selector
+from scrapy.http import Request
+from scrapy.contrib.spiders import CrawlSpider
+from scrapy.contrib.loader import ItemLoader
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from ..items import BbsdmozItem
 
-These are common Git commands used in various situations:
+class forumSpider(CrawlSpider):
+    name = &#39;bbsSpider&#39;
+    allow_domain = [&#39;bbs.sjtu.edu.cn&#39;]
+    start_urls = [&#39;https://bbs.sjtu.edu.cn/bbsall&#39;]
+    # 这里弄不清类变量和继承的关系了
+    # 这里类变量和继承没关系，继承是出现在方法中的
 
-start a working area (see also: git help tutorial)
-   clone      Clone a repository into a new directory
-   init       Create an empty Git repository or reinitialize an existing one
+    link_extractor = {
+        &#39;page&#39;: SgmlLinkExtractor(allow=&#39;/bbsdoc,board,\w+\.html$&#39;),
+        &#39;page_down&#39;: SgmlLinkExtractor(allow=&#39;/bbsdoc,board,\w+,page,\d+\.html$&#39;),
+        &#39;content&#39;: SgmlLinkExtractor(allow=&#39;/bbscon,board,\w+,file,M\.\d+\.A\.html$&#39;),
+    }
+    # link_extractor是字典，这里SgmlLinkExtractor(allow=&#39;/bbscon,board,\w+,file,M\.\d+\.A\.html$&#39;)是对象。
+    # 字典中的值可以取任何数据类型，但必须是不变的。
+    _x_query = {
+        &#39;page_content&#39;: &#39;//pre/text()[2]&#39;,
+        &#39;poster&#39;: &#39;//pre/a/text()&#39;,
+        &#39;forum&#39;: &#39;//center/text()[2]&#39;,
+    }
+    # 单下划线开头的变量代表保护变量，不能用于’from module import *’ 
+    # 以单下划线开头的表示的是protected类型的变量。即保护类型只能允许其本身与子类进行访问。
 
-work on the current change (see also: git help everyday)
-   add        Add file contents to the index
-   mv         Move or rename a file, a directory, or a symlink
-   reset      Reset current HEAD to the specified state
-   rm         Remove files from the working tree and from the index
+    def parse(self, response):
+        for link in self.link_extractor[&#39;page&#39;].extract_links(response):
+            # 使用 extract_links(response)方法，获取匹配到的链接
+            yield Request(url=link.url, callback=self.parse_page)
+            #Request对象接受一个参数callback指定这个Request返回的网页内容的解析函数
 
-examine the history and state (see also: git help revisions)
-   bisect     Use binary search to find the commit that introduced a bug
-   grep       Print lines matching a pattern
-   log        Show commit logs
-   show       Show various types of objects
-   status     Show the working tree status
+    def parse_page(self, response):
+        for link in self.link_extractor[&#39;page_down&#39;].extract_links(response):
+            yield Request(url=link.url, callback=self.parse_page)
 
-grow, mark and tweak your common history
-   branch     List, create, or delete branches
-   checkout   Switch branches or restore working tree files
-   commit     Record changes to the repository
-   diff       Show changes between commits, commit and working tree, etc
-   merge      Join two or more development histories together
-   rebase     Reapply commits on top of another base tip
-   tag        Create, list, delete or verify a tag object signed with GPG
+        for link in self.link_extractor[&#39;content&#39;].extract_links(response):
+            yield Request(url=link.url, callback=self.parse_content)
 
-collaborate (see also: git help workflows)
-   fetch      Download objects and refs from another repository
-   pull       Fetch from and integrate with another repository or a local branch
-   push       Update remote refs along with associated objects
+    def parse_content(self, response):
+        bbsItem_loader = ItemLoader(item=BbsdmozItem, response=response)
+        url = str(response.url)
+        bbsItem_loader.add_value(&#39;url&#39;, url)
+        bbsItem_loader.add_xpath(&#39;forum&#39;, self._x_query[&#39;forum&#39;])
+        bbsItem_loader.add_xpath(&#39;poster&#39;, self._x_query[&#39;poster&#39;])
+        bbsItem_loader.add_xpath(&#39;content&#39;, self._x_query[&#39;page_content&#39;])
 
-&#39;git help -a&#39; and &#39;git help -g&#39; list available subcommands and some
-concept guides. See &#39;git help &lt;command&gt;&#39; or &#39;git help &lt;concept&gt;&#39;
-to read about a specific subcommand or concept.
-</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://blog.miniasp.com/post/2014/01/05/The-color-meaning-in-Git-Shell-prompt.aspx" target="_blank" rel="external">GitHub for Windows 內建 Git Shell 執行時顏色所代表的意義 </a></p>
+        return bbsItem_loader.load_item()
+</code></pre>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -165,13 +190,13 @@ to read about a specific subcommand or concept.
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/命令参考手册/">命令参考手册</a>
+  <a class="article-category-link" href="/categories/遇到的问题/">遇到的问题</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/git/">git</a>
+  <span></span> <a href="/tags/python/">python</a><a href="/tags/scrapy/">scrapy</a>
   </div>
 
 </div>
@@ -180,7 +205,7 @@ to read about a specific subcommand or concept.
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://mirrornight.github.io/2016/05/31/git学习笔记/" data-title="git学习笔记 | mirror night的博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://mirrornight.github.io/2016/06/12/scrapy框架学习/" data-title="scrapy框架学习 | mirror night的博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -194,18 +219,18 @@ to read about a specific subcommand or concept.
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/06/01/python编解码问题/" title="python2中编解码问题">
+ <a href="/2016/06/12/python类中的类变量和实例变量/" title="python类中的类变量和实例变量">
   <strong>上一篇：</strong><br/>
   <span>
-  python2中编解码问题</span>
+  python类中的类变量和实例变量</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/05/30/pip命令参考/"  title="pip命令参考">
+<a href="/2016/06/10/正确使用搜索引擎/"  title="正确使用搜索引擎">
  <strong>下一篇：</strong><br/> 
- <span>pip命令参考
+ <span>正确使用搜索引擎
 </span>
 </a>
 </div>
@@ -220,7 +245,7 @@ to read about a specific subcommand or concept.
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同颜色的分支所代表的含义"><span class="toc-number">1.</span> <span class="toc-text">不同颜色的分支所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作目录档案状态符号与颜色所代表的含义"><span class="toc-number">2.</span> <span class="toc-text">工作目录档案状态符号与颜色所代表的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-shell命令"><span class="toc-number">3.</span> <span class="toc-text">git shell命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-number">3.1.</span> <span class="toc-text">参考</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#体会"><span class="toc-number">1.</span> <span class="toc-text">体会</span></a></li></ol>
  
   </div>
 

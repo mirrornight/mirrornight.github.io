@@ -82,6 +82,597 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/07/08/51单片机电子时钟/" title="51单片机电子时钟" itemprop="url">51单片机电子时钟</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-08T07:04:44.000Z" itemprop="datePublished"> 发表于 2016-07-08</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>##protel设置<br>运行时报错是因为路径里有中文，环境变量配置问题</p>
+<blockquote>
+<p>修改电脑的环境变量，右击【我的电脑】-&gt;【属性】-&gt;【高级】-&gt;点击【环境变量】在用户变量栏里，找到TEMP与TMP，分别双击，将变量值都改为%SystemRoot%\TEMP。还有下面一栏的系统变量，同样改法。如果没有TEMP与TMP项，可以新建一下。 改好后，再仿真试试。</p>
+<p>##遇到的一些问题</p>
+<ol>
+<li>51单片机和lcd连接的时候一定要接排阻。</li>
+<li>EA（51单片机）在使用 片外 存储器时，需接低电平，直接接到GND。<br>如没有使用片外存储器，则必须接高电平，否则你的程序将不会执行</li>
+</ol>
+</blockquote>
+<pre><code class="c">/*
+51单片机制作的电子时钟
+
+使用主要元件：
+AT89C51单片机，LCD1602
+
+功能：
+显示时间，可用按键调节时间
+
+控制方法：
+S1按下进入时间设置模式，按钮调节指针位置，每次按下调到不同的位置
+S2按钮进行时间加
+S3按钮进行时间减
+*/
+
+#include &lt;reg52.h&gt;
+#define uchar unsigned char
+#define uint unsigned int
+#define BUSY 0x80
+sbit RS=P2^5;
+sbit RW=P2^6;
+sbit E=P2^7;
+
+sbit s1=P3^0;
+sbit s2=P3^1;
+sbit s3=P3^2;
+
+char shi,fen,miao;
+
+uchar count,s1num;
+uchar code table[]=&quot;  2016-7-8 5&quot;;
+uchar code table1[]=&quot;  00:00:00&quot;;
+
+void delay(uint z)  //延迟函数
+{
+    uint x,y;
+    for(x=z;x&gt;0;x--)
+    {
+        for(y=110;y&gt;0;y--);
+    }
+}
+
+void write_com(uchar com)  //写命令
+{
+    RS=0;
+    RW=0;
+    E=0;
+    P0=com;
+    delay(5);
+    E=1;
+    delay(5);
+    E=0;
+}
+
+void write_date(uchar date) //写数据
+{
+    RS=1;
+    RW=0;
+    E=0;
+    P0=date;
+    delay(5);
+    E=1;
+    delay(5);
+    E=0;
+}
+
+void init() //初始化
+{
+    uchar num;
+    E=0;
+//    shi=00;
+//    fen=;
+//    miao=40;
+    write_com(0x38);  //显示模式设置
+    write_com(0x0c);  //开显示，不显示光标，光标不闪烁
+    write_com(0x06);  //当读或写一个字符后地址指针加一，且光标加一
+    write_com(0x01);  //显示清屏
+    write_com(0x80);  //设置数据地址指针
+    for(num=0;num&lt;12;num++)
+    {
+        write_date(table[num]); //将前面数组里的数写入
+        delay(20);
+    }
+    write_com(0x80+0x40);
+    for(num=0;num&lt;10;num++)
+    {
+        write_date(table1[num]);
+        delay(20);
+    }
+    TMOD=0x01;        //低四位设置定时器0工作在方式1
+    TH0=(65536-50000)/256;
+    TL0=(65536-50000)%256;//定时的时间
+    EA=1;
+    ET0=1;   //定时器0的中断允许
+    TR0=1;   //定时器0的运行开关
+}
+
+void write_sfm(uchar add,uchar date)  //将时间写入lcd
+{
+    uchar shi,ge;
+    shi=date/10;
+    ge=date%10;
+    write_com(0x80+0x40+add);
+    write_date(0x30+shi);
+    write_date(0x30+ge);
+}
+
+void timer0() interrupt 1   //中断程序
+{
+    TH0=(65536-50000)/256;
+    TL0=(65536-50000)%256;
+    count++;                //过50ms后记一次数
+    if(count==20)           //过一秒后执行下面的程序
+    {
+        count=0;            //时钟自走程序
+        miao++;
+        if(miao==60)
+        {
+            miao=0;
+            fen++;
+            if(fen==60)
+            {
+                fen=0;
+                shi++;
+                if(shi==24)
+                {
+                    shi=0;
+                }
+                write_sfm(2,shi);
+            }
+            write_sfm(5,fen);
+        }
+        write_sfm(8,miao);
+    }
+}
+
+void keyscan()   //开关调时间程序
+{
+    if(s1==0)
+    {
+        delay(5);//防抖延迟
+        if(s1==0)
+        {
+            s1num++;
+            while(!s1); //防抖检测    
+            if(s1num==1)
+            {
+                TR0=0;  //定时器停止运行
+                write_com(0x80+0x40+9);  //调整光标的位置到秒
+                write_com(0x0f);         //显示光标
+            }
+            if(s1num==2)
+            {
+                write_com(0x80+0x40+6);  //调整光标的位置到分
+            }
+            if(s1num==3)
+            {
+                write_com(0x80+0x40+3);  //调整光标的位置到时
+            }
+            if(s1num==4)
+            {
+                s1num=0;
+                write_com(0x0c);
+                TR0=1;
+            }
+        }
+    }
+    if(s1num!=0)        //检测按键2，设置时间的按键：加
+    {
+        if(s2==0)     
+        {
+            delay(5);
+            if(s2==0)
+            {
+                while(!s2);
+                if(s1num==1)
+                {
+                    miao++;
+                    if(miao==60)
+                    {
+                        miao=0;
+                    }
+                    write_sfm(8,miao);   //先进行时间加运算，此时指针会移动到秒数据的后一格
+                    write_com(0x80+0x40+9);//调节指针的位置到秒的位置
+                }
+                if(s1num==2)
+                {
+                    fen++;
+                    if(fen==60)
+                    {
+                        fen=0;
+                    }
+                    write_sfm(5,fen);
+                    write_com(0x80+0x40+6);
+                }
+                if(s1num==3)
+                {
+                    shi++;
+                    if(shi==24)
+                    {
+                        shi=0;
+                    }
+                    write_sfm(2,shi);
+                    write_com(0x80+0x40+3);
+                }
+            }
+        }
+        if(s3==0)         //按键功能减
+        {
+            delay(5);
+            if(s3==0)
+            {
+                while(!s3);
+                if(s1num==1)
+                {
+                    miao--;
+                    if(miao==-1)
+                    {
+                        miao=59;
+                    }
+                    write_sfm(8,miao);
+                    write_com(0x80+0x40+9);
+                }
+                if(s1num==2)
+                {
+                    fen--;
+                    if(fen==-1)
+                    {
+                        fen=59;
+                    }
+                    write_sfm(5,fen);
+                    write_com(0x80+0x40+6);
+                }
+                if(s1num==3)
+                {
+                    shi--;
+                    if(shi==-1)
+                    {
+                        shi=23;
+                    }
+                    write_sfm(2,shi);
+                    write_com(0x80+0x40+3);
+                }
+            }
+        }
+    }
+}
+void main()
+{
+    init();
+    while(1)
+    {
+        keyscan();
+    }
+}
+</code></pre>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/自动化/">自动化</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/单片机/">单片机</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/24/daily/" title="daily" itemprop="url">daily</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-24T09:04:55.000Z" itemprop="datePublished"> 发表于 2016-06-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>##2016/6/23<br>看完了反叛的鲁鲁修。</p>
+<p>##2016/7/8<br>攻壳机动队</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/daily/">daily</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/daily/">daily</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/12/python类中的类变量和实例变量/" title="python类中的类变量和实例变量" itemprop="url">python类中的类变量和实例变量</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-12T09:01:31.000Z" itemprop="datePublished"> 发表于 2016-06-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <pre><code class="python">class aa:
+      w = 10           # 类属性
+      def __init__(self):
+           self.x = 11
+           self.y = 12
+      def add(self):
+           return self.x + self.y
+
+a = aa()               # a是aa类的一个实例
+print a.add()          # 23
+# 下边两条指令各起何作用？结果是输出两个 20 么？还是两个13？还是？
+aa.w = 20              # 改变类变量的值为20
+a.w = 13               # 改变实例变量的值为13
+print aa.w, a.w        # 20 ，13
+# 程序继续增加如下，怎样理解这t和q呢？他们是___变量
+a.t = 14               # 给实例添加属性
+a.q = 15               
+print a.t, a.q
+# 程序继续增加如下，怎样理解这 m 和 n呢？他们是___变量
+aa.m = 30              # 给类添加属性
+aa.n = 40
+print aa.m, aa.n
+
+# 好了再来个提升吧
+# 程序继续增加,下列三个print语句都能正确执行么？为何？
+b = aa()
+print b.x,b.y
+print b.t,b.q          # 报错a和b是不同的实例
+print b.m,b.n          # 和前面的aa.m,aa.n一样，实例变量访问类变量
+</code></pre>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/python学习中感到疑惑的部分/">python学习中感到疑惑的部分</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/12/scrapy框架学习/" title="scrapy框架学习" itemprop="url">scrapy框架学习</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
+		
+  <p class="article-time">
+    <time datetime="2016-06-12T08:30:24.000Z" itemprop="datePublished"> 发表于 2016-06-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h2><p><strong>看到陌生的代码要从两方面去理解：</strong></p>
+<ol>
+<li>从整体上理解，不要纠结细节，弄清每个函数的作用</li>
+<li>从细节上去理解，哪个关键字没见过，这些函数的参数是什么，等..即语言的语法本身上去理解</li>
+</ol>
+<pre><code class="python"># -*- coding: utf-8 -*-
+from scrapy.selector import Selector
+from scrapy.http import Request
+from scrapy.contrib.spiders import CrawlSpider
+from scrapy.contrib.loader import ItemLoader
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from ..items import BbsdmozItem
+
+class forumSpider(CrawlSpider):
+    name = &#39;bbsSpider&#39;
+    allow_domain = [&#39;bbs.sjtu.edu.cn&#39;]
+    start_urls = [&#39;https://bbs.sjtu.edu.cn/bbsall&#39;]
+    # 这里弄不清类变量和继承的关系了
+    # 这里类变量和继承没关系，继承是出现在方法中的
+
+    link_extractor = {
+        &#39;page&#39;: SgmlLinkExtractor(allow=&#39;/bbsdoc,board,\w+\.html$&#39;),
+        &#39;page_down&#39;: SgmlLinkExtractor(allow=&#39;/bbsdoc,board,\w+,page,\d+\.html$&#39;),
+        &#39;content&#39;: SgmlLinkExtractor(allow=&#39;/bbscon,board,\w+,file,M\.\d+\.A\.html$&#39;),
+    }
+    # link_extractor是字典，这里SgmlLinkExtractor(allow=&#39;/bbscon,board,\w+,file,M\.\d+\.A\.html$&#39;)是对象。
+    # 字典中的值可以取任何数据类型，但必须是不变的。
+    _x_query = {
+        &#39;page_content&#39;: &#39;//pre/text()[2]&#39;,
+        &#39;poster&#39;: &#39;//pre/a/text()&#39;,
+        &#39;forum&#39;: &#39;//center/text()[2]&#39;,
+    }
+    # 单下划线开头的变量代表保护变量，不能用于’from module import *’ 
+    # 以单下划线开头的表示的是protected类型的变量。即保护类型只能允许其本身与子类进行访问。
+
+    def parse(self, response):
+        for link in self.link_extractor[&#39;page&#39;].extract_links(response):
+            # 使用 extract_links(response)方法，获取匹配到的链接
+            yield Request(url=link.url, callback=self.parse_page)
+            #Request对象接受一个参数callback指定这个Request返回的网页内容的解析函数
+
+    def parse_page(self, response):
+        for link in self.link_extractor[&#39;page_down&#39;].extract_links(response):
+            yield Request(url=link.url, callback=self.parse_page)
+
+        for link in self.link_extractor[&#39;content&#39;].extract_links(response):
+            yield Request(url=link.url, callback=self.parse_content)
+
+    def parse_content(self, response):
+        bbsItem_loader = ItemLoader(item=BbsdmozItem, response=response)
+        url = str(response.url)
+        bbsItem_loader.add_value(&#39;url&#39;, url)
+        bbsItem_loader.add_xpath(&#39;forum&#39;, self._x_query[&#39;forum&#39;])
+        bbsItem_loader.add_xpath(&#39;poster&#39;, self._x_query[&#39;poster&#39;])
+        bbsItem_loader.add_xpath(&#39;content&#39;, self._x_query[&#39;page_content&#39;])
+
+        return bbsItem_loader.load_item()
+</code></pre>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/遇到的问题/">遇到的问题</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a><a href="/tags/scrapy/">scrapy</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/06/10/正确使用搜索引擎/" title="正确使用搜索引擎" itemprop="url">正确使用搜索引擎</a>
   </h1>
   <p class="article-author">By
@@ -95,7 +686,10 @@
 </header>
     <div class="article-content">
         
-        
+        <p>2016/6/12</p>
+<p>今天搜索scrapy时发现的问题<br>因为看不懂官方文档，脑子里一团糟，开始瞎搜索，结果只是浪费了时间。<br>晚上的时候冷静下来发现了可以更换一下思路。<br>直接收scrap教程时，往往都是些较浅的内容而且内容大致相同并没有太大收获。但加了一些关键字之后就可以发现一些好文章了，例“scrapy callback”。再在包含关键字的文章里找到作者的其他关于scrapy的文章，看看对自己帮助应该很大的。</p>
+<p>scrapy的文章收录在火狐的‘博客中’</p>
+
         
         
         <p class="article-more-link">
@@ -105,6 +699,16 @@
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/榨汁机/">榨汁机</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/google/">google</a>
+  </div>
 
 </div>
 
@@ -197,7 +801,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/python/">python</a><a href="/tags/xpath/">xpath</a><a href="/tags/scrapy/">scrapy</a>
+  <span></span> <a href="/tags/python/">python</a><a href="/tags/scrapy/">scrapy</a><a href="/tags/xpath/">xpath</a>
   </div>
 
 </div>
@@ -587,390 +1191,6 @@ v -&gt; 先按v，然后移动光标，然后，可以d，可以y，也可以变
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/06/03/我有什么要做，我需要什么/" title="我有什么要做" itemprop="url">我有什么要做</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
-		
-  <p class="article-time">
-    <time datetime="2016-06-03T06:12:01.000Z" itemprop="datePublished"> 发表于 2016-06-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="搭建一个高效的开发环境"><a href="#搭建一个高效的开发环境" class="headerlink" title="搭建一个高效的开发环境"></a>搭建一个高效的开发环境</h2><ol>
-<li>熟练使用pycharm的各项快捷键，编写python程序</li>
-<li>熟练使用键盘</li>
-<li>熟练vim命令，可用于windows和linux下的开发</li>
-<li>熟练git命令</li>
-<li>熟练window和linux下的各个常用命令</li>
-<li>熟练sublime的快捷键</li>
-</ol>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>安装谷歌插件vimium<br>安装火狐插件Vimperator<br>安装火狐插件Firebug</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/方向/">方向</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/06/01/python编解码问题/" title="python2中编解码问题" itemprop="url">python2中编解码问题</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
-		
-  <p class="article-time">
-    <time datetime="2016-06-01T07:05:02.000Z" itemprop="datePublished"> 发表于 2016-06-01</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><strong>还是没搞懂，待修改</strong></p>
-<p><strong>字符集是什么？</strong><br>字符集（Charset）：是一个系统支持的所有抽象字符的集合。字符是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等。</p>
-<p><strong>字符编码是什么？</strong><br>字符编码（Character Encoding）：是一套法则，使用该法则能够对自然语言的字符的一个集合（如字母表或音节表），与其他东西的一个集合（如号码或电脉冲）进行配对。即在符号集合与数字系统之间建立对应关系，它是信息处理的一项基本技术。通常人们用符号集合（一般情况下就是文字）来表达信息。而以计算机为基础的信息处理系统则是利用元件（硬件）不同状态的组合来存储和处理信息的。元件不同状态的组合能代表数字系统的数字，因此字符编码就是将符号转换为计算机可以接受的数字系统的数，称为数字代码。</p>
-<p><strong>常用的字符集和字符编码</strong><br>常见字符集名称：ASCII字符集、GB2312字符集、BIG5字符集、GB18030字符集、Unicode字符集等。计算机要准确的处理各种字符集文字，需要进行字符编码，以便计算机能够识别和存储各种文字。</p>
-<p>对应字符集的编码（其中重要的）：</p>
-<ol>
-<li><code>ASCII编码：将ASCII字符集转换为计算机可以接受的数字系统的数的规则。</code>使用7位（bits）表示一个字符，共128字符；但是7位编码的字符集只能支持128个字符，为了表示更多的欧洲常用字符对ASCII进行了扩展，ASCII扩展字符集使用8位（bits）表示一个字符，共256字符。</li>
-<li><code>Unicode是字符集，UTF-32/ UTF-16/ UTF-8是三种字符编码方案。</code><blockquote>
-<p>上述使用4字节的数字来表达每个字母、符号，或者表意文字(ideograph)，每个数字代表唯一的至少在某种语言中使用的符号的编码方案，称为UTF-32。UTF-32又称UCS-4是一种将Unicode字符编码的协定，对每个字符都使用4字节。就空间而言，是非常没有效率的。</p>
-<p>UTF-8（8-bit Unicode Transformation Format）是一种针对Unicode的可变长度字符编码（定长码），也是一种前缀码。它可以用来表示Unicode标准中的任何字符，且其编码中的第一个字节仍与ASCII兼容，这使得原来处理ASCII字符的软件无须或只须做少部份修改，即可继续使用。因此，它逐渐成为电子邮件、网页及其他存储或传送文字的应用中，优先采用的编码。互联网工程工作小组（IETF）要求所有互联网协议都必须支持UTF-8编码。</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="python中的编码和解码"><a href="#python中的编码和解码" class="headerlink" title="python中的编码和解码"></a>python中的编码和解码</h2><p>s.decode() 解码 将s解码为unicode，需要知道s的编码方式<br>s.encode() 编码 s为unicode，需要通过编码与源文件编码一致</p>
-<pre><code class="python"># -*- coding: utf-8 -*-
-a = &quot;中文&quot;             # a 是一个utf-8格式的字符串
-b = a.decode(&quot;utf-8&quot;)  # a 是被解码为unicode对象，赋给 b
-c = b.encode(&quot;gbk&quot;)    # b 是被编码为gbk格式的字符串，赋给 c
-</code></pre>
-<p>此时的c打印出来为乱码，a和b正常</p>
-<pre><code class="python"># -*- coding: utf-8 -*-
-s = &quot;中文&quot;
-s.encode(&#39;gbk&#39;)
-</code></pre>
-<p>上面的代码回报错，为：UnicodeDecodeError: ‘gb2312’ codec can’t decode bytes in position 4-5…</p>
-<h2 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h2><p><strong>此节内容来自</strong><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000" target="_blank" rel="external">廖雪峰的官方网站:字符串和编码</a></p>
-<blockquote>
-<p>因为计算机只能处理数字，如果要处理文本，就必须先把文本转换为数字才能处理。<br>8bit为1字节，一字节能表示的最大整数为255<br>最先出来的编码表被称之为<code>ASCII</code>编码，包括大小写英文字母，数字和一些符号，<strong>一个字节就够了</strong>。</p>
-<p>但是要处理中文显然一个字节是不够的，<strong>至少需要两个字节</strong>，而且还不能和ASCII编码冲突，所以，中国制定了<code>GB2312</code>编码，用来把中文编进去。</p>
-<p>全世界有上百种语言，日本把日文编到<code>Shift_JIS</code>里，韩国把韩文编到<code>Euc-kr</code>里，各国有各国的标准，就会不可避免地出现冲突，结果就是，在多语言混合的文本中，显示出来会有乱码。</p>
-<p>因此，<code>Unicode</code>应运而生。Unicode把所有语言都统一到一套编码里，这样就不会再有乱码问题了。<br><code>首先’\u‘开头就基本表明是跟unicode编码相关的，“\u”后的16进制字符串是相应汉字的utf-16编码。</code></p>
-<p><code>ASCII编码和Unicode编码的区别：ASCII编码是1个字节，而Unicode编码通常是2个字节。</code></p>
-<p>新的问题又出现了：<br>如果统一成Unicode编码，乱码问题从此消失了。但是，如果你写的文本基本上全部是英文的话，用Unicode编码比ASCII编码需要多一倍的存储空间，在存储和传输上就十分不划算。<br>所以，本着节约的精神，又出现了把Unicode编码转化为“可变长编码”的<code>UTF-8</code>编码。UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，<code>常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。</code>如果你要传输的文本包含大量英文字符，用UTF-8编码就能节省空间</p>
-<p>从上面的表格还可以发现，UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。</p>
-<p>搞清楚了ASCII、Unicode和UTF-8的关系，我们就可以总结一下现在计算机系统通用的字符编码工作方式：<br>在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。<br>例：用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件<br>例：浏览网页的时候，服务器会把动态生成的Unicode内容转换为UTF-8再传输到浏览器</p>
-</blockquote>
-<h2 id="python的字符串"><a href="#python的字符串" class="headerlink" title="python的字符串"></a>python的字符串</h2><p><strong>此节内容来自</strong><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000" target="_blank" rel="external">廖雪峰的官方网站:字符串和编码</a></p>
-<blockquote>
-<p>搞清楚了令人头疼的字符编码问题后，我们再来研究Python对Unicode的支持。</p>
-<p>因为Python的诞生比Unicode标准发布的时间还要早，所以最早的Python只支持ASCII编码普通的字符串<code>&#39;ABC&#39;</code>在Python内部都是ASCII编码的。Python提供了<code>ord()</code>和<code>chr()</code>函数，可以把字母和对应的数字相互转换 。</p>
-<p>Python在后来添加了对Unicode的支持，以Unicode表示的字符串用<code>u&#39;...&#39;</code>表示<br><code>&gt;&gt;&gt; print u&#39;中文&#39;</code><br><code>中文</code><br><code>&gt;&gt;&gt; u&#39;中&#39;</code><br><code>u&#39;\u4e2d&#39;</code><br>写<code>u&#39;中&#39;</code>和<code>u&#39;\u4e2d&#39;</code>是一样的，<code>\u</code>后面是十六进制的Unicode码。因此，<code>u&#39;A&#39;</code>和<code>u&#39;\u0041&#39;</code>也是一样的。</p>
-<p>两种字符串如何相互转换？<br>字符串<code>&#39;xxx&#39;</code>虽然是ASCII编码，但也可以看成是UTF-8编码，而<code>u&#39;xxx&#39;</code>则只能是Unicode编码。</p>
-<p>把<code>u&#39;xxx&#39;</code>转换为UTF-8编码的<code>&#39;xxx&#39;</code>用<code>encode(&#39;utf-8&#39;)</code>方法：<br><code>&gt;&gt;&gt; u&#39;ABC&#39;.encode(&#39;utf-8&#39;)</code><br><code>&#39;ABC&#39;</code><br><code>&gt;&gt;&gt; u&#39;中文&#39;.encode(&#39;utf-8&#39;)</code><br><code>&#39;\xe4\xb8\xad\xe6\x96\x87&#39;</code></p>
-<p>反过来，把UTF-8编码表示的字符串<code>&#39;xxx&#39;</code>转换为Unicode字符串<code>u&#39;xxx&#39;</code>用<code>decode(&#39;utf-8&#39;)</code>方法：<br><code>&gt;&gt;&gt; &#39;abc&#39;.decode(&#39;utf-8&#39;)</code><br><code>u&#39;abc&#39;</code><br><code>&gt;&gt;&gt; &#39;\xe4\xb8\xad\xe6\x96\x87&#39;.decode(&#39;utf-8&#39;)</code><br><code>&gt;&gt;&gt; print &#39;\xe4\xb8\xad\xe6\x96\x87&#39;.decode(&#39;utf-8&#39;)</code><br><code>中文</code></p>
-<p>由于Python源代码也是一个文本文件，所以，当你的源代码中包含中文的时候，在保存源代码时，就需要务必指定保存为UTF-8编码。当Python解释器读取源代码时，为了让它按UTF-8编码读取，我们通常在文件开头写上这两行：<br><code>#!/usr/bin/env python</code><br><code># -*- coding: utf-8 -*-</code></p>
-</blockquote>
-<p>相关博客：<br><a href="http://liangguanhui.iteye.com/blog/554116" target="_blank" rel="external">五分钟Unicode简单入门</a><br><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="external">字符编码笔记：ASCII，Unicode和UTF-8</a><br><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386819196283586a37629844456ca7e5a7faa9b94ee8000" target="_blank" rel="external">廖雪峰的官方网站:字符串和编码</a><br><a href="http://www.cnblogs.com/skynet/archive/2011/05/03/2035105.html" target="_blank" rel="external">字符集和字符编码（Charset &amp; Encoding）</a></p>
-<p>个人觉得说得比较清楚其他的一些博客：<br><a href="http://www.crifan.com/files/doc/docbook/char_encoding/release/html/char_encoding.html" target="_blank" rel="external">字符编码详解</a><br><a href="http://www.crifan.com/python_head_meaning_for_usr_bin_python_coding_utf-8/" target="_blank" rel="external">关于Python脚本开头两行的：#!/usr/bin/python和# -<em>- coding: utf-8 -</em>-的作用 – 指定文件编码类型</a><br><a href="http://www.crifan.com/python_already_got_correct_encoding_string_but_seems_print_messy_code/" target="_blank" rel="external">Python中实际上已经得到了正确的Unicode或某种编码的字符，但是看起来或打印出来却是乱码</a><br><a href="http://www.crifan.com/files/doc/docbook/python_topic_str_encoding/release/html/python_topic_str_encoding.html" target="_blank" rel="external">Python专题教程：字符串和字符编码</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/python/">python</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/31/git学习笔记/" title="git学习笔记" itemprop="url">git学习笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-31T07:52:53.000Z" itemprop="datePublished"> 发表于 2016-05-31</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="不同颜色的分支所代表的含义"><a href="#不同颜色的分支所代表的含义" class="headerlink" title="不同颜色的分支所代表的含义"></a>不同颜色的分支所代表的含义</h2><ul>
-<li>青色：代表本地储存库和远端储存库是同步状态</li>
-<li>红色：本地储存库的版本比远端储存库落后<br><code>git pull把远端储存库的变更抓回来更新本地储存库</code>                  </li>
-<li>黄色：目前本地储存库有些版本超前于远端储存库，而有些落后<br><code>先 git pull 在 git push 把本地的版本推送上去</code></li>
-<li>绿色：代表本地储存库超前于远端储存库<br><code>git push</code></li>
-</ul>
-<h2 id="工作目录档案状态符号与颜色所代表的含义"><a href="#工作目录档案状态符号与颜色所代表的含义" class="headerlink" title="工作目录档案状态符号与颜色所代表的含义"></a>工作目录档案状态符号与颜色所代表的含义</h2><ul>
-<li><code>+</code> = 有 n 个新增档案</li>
-<li><code>~</code> = 有 n 个档案被更新</li>
-<li><code>-</code> = 有 n 个档案被删除</li>
-<li><code>!</code> = 有 n 个档案在合并时发生冲突</li>
-<li>暗红色：代表这些档案处于untracked 或not staged状态</li>
-<li>暗绿色：代表这些档案处于staged状态</li>
-</ul>
-<h2 id="git-shell命令"><a href="#git-shell命令" class="headerlink" title="git shell命令"></a>git shell命令</h2><pre><code>usage: git [--version] [--help] [-C &lt;path&gt;] [-c name=value]
-           [--exec-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;]
-           &lt;command&gt; [&lt;args&gt;]
-
-These are common Git commands used in various situations:
-
-start a working area (see also: git help tutorial)
-   clone      Clone a repository into a new directory
-   init       Create an empty Git repository or reinitialize an existing one
-
-work on the current change (see also: git help everyday)
-   add        Add file contents to the index
-   mv         Move or rename a file, a directory, or a symlink
-   reset      Reset current HEAD to the specified state
-   rm         Remove files from the working tree and from the index
-
-examine the history and state (see also: git help revisions)
-   bisect     Use binary search to find the commit that introduced a bug
-   grep       Print lines matching a pattern
-   log        Show commit logs
-   show       Show various types of objects
-   status     Show the working tree status
-
-grow, mark and tweak your common history
-   branch     List, create, or delete branches
-   checkout   Switch branches or restore working tree files
-   commit     Record changes to the repository
-   diff       Show changes between commits, commit and working tree, etc
-   merge      Join two or more development histories together
-   rebase     Reapply commits on top of another base tip
-   tag        Create, list, delete or verify a tag object signed with GPG
-
-collaborate (see also: git help workflows)
-   fetch      Download objects and refs from another repository
-   pull       Fetch from and integrate with another repository or a local branch
-   push       Update remote refs along with associated objects
-
-&#39;git help -a&#39; and &#39;git help -g&#39; list available subcommands and some
-concept guides. See &#39;git help &lt;command&gt;&#39; or &#39;git help &lt;concept&gt;&#39;
-to read about a specific subcommand or concept.
-</code></pre><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://blog.miniasp.com/post/2014/01/05/The-color-meaning-in-Git-Shell-prompt.aspx" target="_blank" rel="external">GitHub for Windows 內建 Git Shell 執行時顏色所代表的意義 </a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/命令参考手册/">命令参考手册</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/git/">git</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/05/30/pip命令参考/" title="pip命令参考" itemprop="url">pip命令参考</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="mirror night" target="_blank" itemprop="author">mirror night</a>
-		
-  <p class="article-time">
-    <time datetime="2016-05-30T13:00:28.000Z" itemprop="datePublished"> 发表于 2016-05-30</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <pre><code>Usage:
-  pip &lt;command&gt; [options]
-
-Commands:
-  install                     Install packages.
-  download                    Download packages.
-  uninstall                   Uninstall packages.
-  freeze                      Output installed packages in requirements format.
-  list                        List installed packages.
-  show                        Show information about installed packages.
-  search                      Search PyPI for packages.
-  wheel                       Build wheels from your requirements.
-  hash                        Compute hashes of package archives.
-  completion                  A helper command used for command completion
-  help                        Show help for commands.
-
-General Options:
-  -h, --help                  Show help.
-  --isolated                  Run pip in an isolated mode, ignoring
-                              environment variables and user configuration.
-  -v, --verbose               Give more output. Option is additive, and can be
-                              used up to 3 times.
-  -V, --version               Show version and exit.
-  -q, --quiet                 Give less output.
-  --log &lt;path&gt;                Path to a verbose appending log.
-  --proxy &lt;proxy&gt;             Specify a proxy in the form
-                              [user:passwd@]proxy.server:port.
-  --retries &lt;retries&gt;         Maximum number of retries each connection should
-                              attempt (default 5 times).
-  --timeout &lt;sec&gt;             Set the socket timeout (default 15 seconds).
-  --exists-action &lt;action&gt;    Default action when a path already exists:
-                              (s)witch, (i)gnore, (w)ipe, (b)ackup.
-  --trusted-host &lt;hostname&gt;   Mark this host as trusted, even though it does
-                              not have valid or any HTTPS.
-  --cert &lt;path&gt;               Path to alternate CA bundle.
-  --client-cert &lt;path&gt;        Path to SSL client certificate, a single file
-                              containing the private key and the certificate
-                              in PEM format.
-  --cache-dir &lt;dir&gt;           Store the cache data in &lt;dir&gt;.
-  --no-cache-dir              Disable the cache.
-  --disable-pip-version-check
-                              Don&#39;t periodically check PyPI to determine
-                              whether a new version of pip is available for
-                              download. Implied with --no-index.
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/命令参考手册/">命令参考手册</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/python/">python</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -989,7 +1209,15 @@ General Options:
 		<ul>
 		
 		  
+			<li><a href="/categories/daily/" title="daily">daily<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/fun/" title="fun">fun<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/python学习中感到疑惑的部分/" title="python学习中感到疑惑的部分">python学习中感到疑惑的部分<sup>1</sup></a></li>
 		  
 		
 		  
@@ -1001,7 +1229,15 @@ General Options:
 		  
 		
 		  
-			<li><a href="/categories/遇到的问题/" title="遇到的问题">遇到的问题<sup>1</sup></a></li>
+			<li><a href="/categories/榨汁机/" title="榨汁机">榨汁机<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/自动化/" title="自动化">自动化<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/遇到的问题/" title="遇到的问题">遇到的问题<sup>2</sup></a></li>
 		  
 		
 		</ul>
@@ -1014,7 +1250,27 @@ General Options:
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/scrapy/" title="scrapy">scrapy<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sumline-text/" title="sumline text">sumline text<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/单片机/" title="单片机">单片机<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/daily/" title="daily">daily<sup>1</sup></a></li>
 			
 		
 			
@@ -1026,27 +1282,19 @@ General Options:
 			
 		
 			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/sumline-text/" title="sumline text">sumline text<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/vim/" title="vim">vim<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/xpath/" title="xpath">xpath<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/scrapy/" title="scrapy">scrapy<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/vimium/" title="vimium">vimium<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/google/" title="google">google<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/xpath/" title="xpath">xpath<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -1057,7 +1305,7 @@ General Options:
   <div class="tagcloudlist">
     <p class="asidetitle">标签云</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/sumline-text/" style="font-size: 10px;">sumline text</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimium/" style="font-size: 10px;">vimium</a> <a href="/tags/xpath/" style="font-size: 10px;">xpath</a>
+       <a href="/tags/daily/" style="font-size: 10px;">daily</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/google/" style="font-size: 10px;">google</a> <a href="/tags/hehe/" style="font-size: 10px;">hehe</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/tags/sumline-text/" style="font-size: 10px;">sumline text</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vimium/" style="font-size: 10px;">vimium</a> <a href="/tags/xpath/" style="font-size: 10px;">xpath</a> <a href="/tags/单片机/" style="font-size: 10px;">单片机</a>
     </div>
   </div>
 
